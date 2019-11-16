@@ -3,7 +3,6 @@ package Modules.Cars.Utils;
 import Modules.Cars.Classes.*;
 import Utils.*;
 import Classes.*;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class functionsCars_crud {
@@ -63,10 +62,10 @@ public class functionsCars_crud {
 			cad = Menu.electricList.get(functionsSearchCar.searchCarElectric(Menu.electricList, options)).toString();
 			//////
 		}else if (engine == 1) {
-			cad = Menu.hybridList.get(searchCarHybrid(Menu.hybridList, options)).toString();
+			cad = Menu.hybridList.get(functionsSearchCar.searchCarHybrid(Menu.hybridList, options)).toString();
 			//////
 		}else if (engine == 2) {
-			cad = Menu.combustionList.get(searchCarCombustion(Menu.combustionList, options)).toString();
+			cad = Menu.combustionList.get(functionsSearchCar.searchCarCombustion(Menu.combustionList, options)).toString();
 		}// end_else
 		//////
 		return cad;
@@ -81,7 +80,7 @@ public class functionsCars_crud {
 		/////
 		
 		if (engine == 0) {
-			select = searchCarElectric(Menu.electricList, options);
+			select = functionsSearchCar.searchCarElectric(Menu.electricList, options);
 			selectButton = functionsMenu.buttonMenu(optionsElectric, "Choose an option to edit.", "Edit");
 			//////
 			switch (selectButton) {
@@ -126,7 +125,7 @@ public class functionsCars_crud {
 					//////
 			}// end_switch
 		}else if (engine == 1) {
-			select = searchCarHybrid(Menu.hybridList, options);
+			select = functionsSearchCar.searchCarHybrid(Menu.hybridList, options);
 			selectButton = functionsMenu.buttonMenu(optionsHybrid, "Choose an option to edit.", "Edit");
 		//////
 					switch (selectButton) {
@@ -171,7 +170,7 @@ public class functionsCars_crud {
 							//////
 					}// end_switch
 		}else if (engine == 2) {
-			select = searchCarCombustion(Menu.combustionList, options);
+			select = functionsSearchCar.searchCarCombustion(Menu.combustionList, options);
 			selectButton = functionsMenu.buttonMenu(optionsCombustion, "Choose an option to edit.", "Edit");
 		//////
 					switch (selectButton) {
@@ -232,94 +231,27 @@ public class functionsCars_crud {
 		/////
 		
 		if (engine == 0) {
-			select = searchCarElectric(Menu.electricList, options);
+			select = functionsSearchCar.searchCarElectric(Menu.electricList, options);
 			if (select == -2)
 				JOptionPane.showMessageDialog(null, "Going back.", "Back", JOptionPane.INFORMATION_MESSAGE);
 			else
 				Menu.electricList.remove(select).toString();
 			//////
 		}else if (engine == 1) {
-			select = searchCarHybrid(Menu.hybridList, options);
+			select = functionsSearchCar.searchCarHybrid(Menu.hybridList, options);
 			if (select == -2)
 				JOptionPane.showMessageDialog(null, "Going back.", "Back", JOptionPane.INFORMATION_MESSAGE);
 			else
 				Menu.hybridList.remove(select).toString();
 			//////
 		}else if (engine == 2) {
-			select = searchCarCombustion(Menu.combustionList, options);
+			select = functionsSearchCar.searchCarCombustion(Menu.combustionList, options);
 			if (select == -2)
 				JOptionPane.showMessageDialog(null, "Going back", "Back", JOptionPane.INFORMATION_MESSAGE);
 			else
 				Menu.combustionList.remove(select).toString();
 		}// end_else
 	}// end_deleteCar
-	//////
-	/////
-	
-	public int searchCarElectric(ArrayList<Electric> engineList, String[] options) {
-		ArrayList<String> modelList = new ArrayList<String>();
-		ArrayList<Integer> posList = new ArrayList<Integer>();
-		int select = 0, selectFilter = 0;
-		String test = "";
-		String[] optionsElectric = {"Show All", "Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Batery", "Back"};
-		//////
-		selectFilter = functionsMenu.buttonMenu(optionsElectric, "Choose an option.", "Choose a filter");
-		switch(selectFilter) {
-			case 0:
-				for (int i = 0; i < engineList.size(); i++) {
-					modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-					posList.add(i);
-				}// end_for
-				break;
-			case 1:
-				test = functionsDataCars.createBrand("Introduce the Brand of the car.", "Brand Filter");
-				for (int i = 0; i < engineList.size(); i++) {
-					if (test.equals(Menu.electricList.get(i).getBrand())) {
-						modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-						posList.add(i);
-					}// end_if
-				}// end_for
-				break;
-		}
-		//////
-		//for (int i = 0; i < engineList.size(); i++) {
-		//	modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-		//}// end_for
-		String[] modelButtons = modelList.toArray(new String[0]);
-		select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select", options);
-		//////
-		return posList.get(select);
-	}// end_searchCarElectric
-	//////
-	/////
-	
-	public int searchCarHybrid(ArrayList<Hybrid> engineList, String[] options) {
-		ArrayList<String> modelList = new ArrayList<String>();
-		int select = 0;
-		//////
-		for (int i = 0; i < engineList.size(); i++) {
-			modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-		}// end_for
-		String[] modelButtons = modelList.toArray(new String[0]);
-		select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select", options);
-		//////
-		return select;
-	}// end_searchCarElectric
-	//////
-	/////
-	
-	public int searchCarCombustion(ArrayList<Combustion> engineList, String[] options) {
-		ArrayList<String> modelList = new ArrayList<String>();
-		int select = 0;
-		//////
-		for (int i = 0; i < engineList.size(); i++) {
-			modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-		}// end_for
-		String[] modelButtons = modelList.toArray(new String[0]);
-		select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select", options);
-		//////
-		return select;
-	}// end_searchCarElectric
 	//////
 	/////
 	
