@@ -103,6 +103,26 @@ public class functionsDataCars {
 	}// end_createDoors
 	//////
 	/////
+
+	public static String createCarPlate (String message, String title) {
+		//////
+		String carPlate = "";
+		boolean resume = false;
+		//////
+		/////
+
+		do {
+			carPlate = functions.verString(message, title);
+			if (functionsRegularExp.verRegExCarPlate(carPlate) == true)
+				resume = true;
+			else
+				JOptionPane.showMessageDialog(null, "You have introduced an invalid format", "Error", JOptionPane.ERROR_MESSAGE);
+		}while (resume == false);
+		//////
+		return carPlate;
+	}// end_createCarPlate
+	//////
+	/////
 	
 	public static String createDStart(String message, String title) {
 		//////

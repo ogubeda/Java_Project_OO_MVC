@@ -8,7 +8,10 @@ import javax.swing.JOptionPane;
 
 public class functionsCars_crud {
 	//////
-	
+	private String[] optionsElectric = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Batery", "Back"};
+	private String[] optionsHybrid = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Type Hybrid", "Back"};
+	private String[] optionsCombustion = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Type Combustion", "Back"};
+	private String[] options = {"Continue", "Back"};
 	//////
 	public void createCar(int engine) {
 		Electric carElectric = null;
@@ -16,7 +19,7 @@ public class functionsCars_crud {
 		Combustion carCombustion = null;
 		Fecha dStart = null, dEnd = null;
 		//////
-		String brand = "", model = "", typeHybrid = "", typeComb = "";
+		String brand = "", model = "", typeHybrid = "", typeComb = "", carPlate = "";
 		int seats = 0, doors = 0, batery = 0;
 		boolean parkinghelp = false;
 		//////
@@ -27,20 +30,21 @@ public class functionsCars_crud {
 		seats = functionsDataCars.createSeats("Introduce the quantity of Seats of the car.", "Introduce the Seats");
 		parkinghelp = functionsDataCars.createParkingHelp("Does the car have Parking Help?", "Select the Parking Help");
 		doors = functionsDataCars.createDoors("Introduce the quantity of Doors of the car.", "Introduce the Doors");
+		carPlate = functionsDataCars.createCarPlate("Introduce the Plate of the Car", "Introduce the Car Plate");
 		dStart = functionsDate_crud.createSDate("What day you want to start the rent?\nFormat: yyyy/mm/dd", "Introduce the Start Day");
 		dEnd = functionsDate_crud.createEDate("What day you want to return the car?\nFormat: yyyy/mm/dd", "Introduce the End Day", dStart);
 		///////
 		if (engine == 0) {
 			batery = functionsDataCars.createBatery("Introduce the capacity of the Batery of the car.", "Introduce the Batery");
-			carElectric = new Electric(brand, model, seats, parkinghelp, doors, dStart, dEnd, batery);
+			carElectric = new Electric(brand, model, seats, parkinghelp, doors, carPlate,dStart, dEnd, batery);
 			Menu.electricList.add(carElectric);
 		}else if (engine == 1) {
 			typeHybrid = functionsDataCars.createTypeHybrid("Choose the type for the Hybrid Engine.", "Select the Hybrid Engine");
-			carHybrid = new Hybrid(brand, model, seats, parkinghelp, doors, dStart, dEnd, typeHybrid);
+			carHybrid = new Hybrid(brand, model, seats, parkinghelp, doors, carPlate,dStart, dEnd, typeHybrid);
 			Menu.hybridList.add(carHybrid);
 		}else if (engine == 2) {
 			typeComb = functionsDataCars.createTypeCombustion("Choose the type for the Combustion Engine.", "Select the Combustion Engine");
-			carCombustion = new Combustion(brand, model, seats, parkinghelp, doors, dStart, dEnd, typeComb);
+			carCombustion = new Combustion(brand, model, seats, parkinghelp, doors, carPlate,dStart, dEnd, typeComb);
 			Menu.combustionList.add(carCombustion);
 		}// end_if
 		///////
@@ -56,7 +60,7 @@ public class functionsCars_crud {
 		/////
 		
 		if (engine == 0) {
-			cad = Menu.electricList.get(searchCarElectric(Menu.electricList, options)).toString();
+			cad = Menu.electricList.get(functionsSearchCar.searchCarElectric(Menu.electricList, options)).toString();
 			//////
 		}else if (engine == 1) {
 			cad = Menu.hybridList.get(searchCarHybrid(Menu.hybridList, options)).toString();
@@ -72,10 +76,6 @@ public class functionsCars_crud {
 	
 	public void updateCar(int engine) {
 		//////
-		String[] optionsElectric = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Start Day", "End Day", "Batery", "Back"};
-		String[] optionsHybrid = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Start Day", "End Day", "Type Hybrid", "Back"};
-		String[] optionsCombustion = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Start Day", "End Day", "Type Combustion", "Back"};
-		String[] options = {"Continue", "Back"};
 		int select = 0, selectButton = 0;
 		//////
 		/////
@@ -106,14 +106,18 @@ public class functionsCars_crud {
 					break;
 					//////
 				case 5:
-					Menu.electricList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Menu.electricList.get(select).getdEndDate()));
+					Menu.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
 					break;
 					//////
 				case 6:
-					Menu.electricList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Menu.electricList.get(select).getdStartDate()));
+					Menu.electricList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Menu.electricList.get(select).getdEndDate()));
 					break;
 					//////
 				case 7:
+					Menu.electricList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Menu.electricList.get(select).getdStartDate()));
+					break;
+					//////
+				case 8:
 					Menu.electricList.get(select).setBatery(functionsDataCars.createBatery("Introduce the new capacity for the Batery.", "Introduce the Batery"));
 					break;
 					//////
@@ -147,14 +151,18 @@ public class functionsCars_crud {
 							break;
 							//////
 						case 5:
-							Menu.hybridList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Menu.hybridList.get(select).getdEndDate()));
+							Menu.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
 							break;
 							//////
 						case 6:
-							Menu.hybridList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Menu.hybridList.get(select).getdStartDate()));
+							Menu.hybridList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Menu.hybridList.get(select).getdEndDate()));
 							break;
 							//////
 						case 7:
+							Menu.hybridList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Menu.hybridList.get(select).getdStartDate()));
+							break;
+							//////
+						case 8:
 							Menu.hybridList.get(select).setTypeSecond(functionsDataCars.createTypeHybrid("Choose the new type of the Hybrid Engine.", "Choose the Hybrid Engine"));
 							break;
 							//////
@@ -188,18 +196,22 @@ public class functionsCars_crud {
 							break;
 							//////
 						case 5:
+							Menu.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
+							break;
+							//////
+						case 6:
 							Menu.combustionList.get(select).setdStart(
 									functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", 
 											"Introduce the Start Day", Menu.combustionList.get(select).getdEndDate()));
 							break;
 							//////
-						case 6:
+						case 7:
 							Menu.combustionList.get(select).setdEnd(
 									functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", 
 											"Introduce the End Day", Menu.combustionList.get(select).getdStartDate()));
 							break;
 							//////
-						case 7:
+						case 8:
 							Menu.combustionList.get(select).setTypeComb(functionsDataCars.createTypeCombustion("Choose the new Type of the Combustion Engine", "Choose the Type of Combustion"));
 							break;
 							//////
@@ -246,15 +258,37 @@ public class functionsCars_crud {
 	
 	public int searchCarElectric(ArrayList<Electric> engineList, String[] options) {
 		ArrayList<String> modelList = new ArrayList<String>();
-		int select = 0;
+		ArrayList<Integer> posList = new ArrayList<Integer>();
+		int select = 0, selectFilter = 0;
+		String test = "";
+		String[] optionsElectric = {"Show All", "Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Batery", "Back"};
 		//////
-		for (int i = 0; i < engineList.size(); i++) {
-			modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel());
-		}// end_for
+		selectFilter = functionsMenu.buttonMenu(optionsElectric, "Choose an option.", "Choose a filter");
+		switch(selectFilter) {
+			case 0:
+				for (int i = 0; i < engineList.size(); i++) {
+					modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
+					posList.add(i);
+				}// end_for
+				break;
+			case 1:
+				test = functionsDataCars.createBrand("Introduce the Brand of the car.", "Brand Filter");
+				for (int i = 0; i < engineList.size(); i++) {
+					if (test.equals(Menu.electricList.get(i).getBrand())) {
+						modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
+						posList.add(i);
+					}// end_if
+				}// end_for
+				break;
+		}
+		//////
+		//for (int i = 0; i < engineList.size(); i++) {
+		//	modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
+		//}// end_for
 		String[] modelButtons = modelList.toArray(new String[0]);
 		select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select", options);
 		//////
-		return select;
+		return posList.get(select);
 	}// end_searchCarElectric
 	//////
 	/////
@@ -264,7 +298,7 @@ public class functionsCars_crud {
 		int select = 0;
 		//////
 		for (int i = 0; i < engineList.size(); i++) {
-			modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel());
+			modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
 		}// end_for
 		String[] modelButtons = modelList.toArray(new String[0]);
 		select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select", options);
@@ -279,7 +313,7 @@ public class functionsCars_crud {
 		int select = 0;
 		//////
 		for (int i = 0; i < engineList.size(); i++) {
-			modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel());
+			modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
 		}// end_for
 		String[] modelButtons = modelList.toArray(new String[0]);
 		select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select", options);

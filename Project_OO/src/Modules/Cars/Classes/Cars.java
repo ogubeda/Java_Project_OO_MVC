@@ -9,20 +9,22 @@ public abstract class Cars {
 	private int seats;
 	private boolean parkinghelp;
 	private int doors;
+	private String carPlate;
 	private Fecha dStart;
 	private Fecha dEnd;
 	private int numDays;
-	private int price;
+	private double price;
 	private double disc;
 	//////
 	
-	public Cars(String brand, String model, int seats, boolean parkinghelp, int doors, Fecha dStart, Fecha dEnd) {
+	public Cars(String brand, String model, int seats, boolean parkinghelp, int doors, String carPlate,Fecha dStart, Fecha dEnd) {
 		super();
 		this.brand = brand;
 		this.model = model;
 		this.seats = seats;
 		this.parkinghelp = parkinghelp;
 		this.doors = doors;
+		this.carPlate = carPlate;
 		this.dStart = dStart;
 		this.dEnd = dEnd;
 		this.setNumDays();
@@ -73,6 +75,14 @@ public abstract class Cars {
 		this.setPrice();
 	}
 
+	public String getCarPlate() {
+		return this.carPlate;
+	}
+
+	public void setCarPlate(String carPlate) {
+		this.carPlate = carPlate;
+	}
+
 	public String getdStart() {
 		return dStart.dateToString();
 	}
@@ -111,15 +121,15 @@ public abstract class Cars {
 		this.setPrice();
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
 	public void setPrice() {
 		if (this.parkinghelp == true)
-			this.price = this.doors + this.seats + 50 * this.numDays / 2;
+			this.price = (this.doors + this.seats + 50 * this.numDays / 2) * this.disc;
 		else
-			this.price = this.doors + this.seats * this.numDays / 2;
+			this.price = (this.doors + this.seats * this.numDays / 2) * this.disc;
 	}
 
 	public double getDisc() {
@@ -127,8 +137,10 @@ public abstract class Cars {
 	}
 
 	public void setDisc() {
-		if (this.numDays > 7)
-			this.disc = 0.5;
+		if (this.numDays >= 7)
+			this.disc = 0.25;
+		else
+			this.disc = 0.1;
 	}
 
 	@Override

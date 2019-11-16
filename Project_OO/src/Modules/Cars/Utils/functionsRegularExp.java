@@ -12,6 +12,7 @@ public class functionsRegularExp {
 	private static final String patternTLF = "^[0-9]{2,3}-? ?[0-9]{6,7}$";
 	private static final String patternDNI = "([0-9]{8})([A-Z])";
 	private static final String patternEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private static final String patternCarPlate = "^([0-9]{4})([A-Z]{3})$";
 	//////
 	public static boolean verRegExData(String data) {
 		//////
@@ -119,5 +120,21 @@ public class functionsRegularExp {
 			return false;
 		//////
 	}// end_verRegExMail
+	//////
+	/////
+
+	public static boolean verRegExCarPlate(String data) {
+		//////
+		Pattern pattern = Pattern.compile(patternCarPlate);
+		Matcher matcher = pattern.matcher(data);
+		//////
+		if (matcher.matches())
+			return true;
+		else
+			return false;
+		//////
+	}// end_verRexExCarPlate
+	//////
+	/////
 	
 }// end_functionsRegularExp
