@@ -1,9 +1,6 @@
-package carRenting;
+package Modules.Cars.Utils;
 
 import javax.swing.JOptionPane;
-import funciones.functions;
-import funciones.functionsMenu;
-import funciones.functionsRegularExp;
 
 public class functionsDataCars {
 	//////Creación de las funciones para crear los atributos generales
