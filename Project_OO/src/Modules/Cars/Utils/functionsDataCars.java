@@ -107,7 +107,7 @@ public class functionsDataCars {
 	public static String createCarPlate (String message, String title) {
 		//////
 		String carPlate = "";
-		boolean resume = false, repeatedPlate = false;
+		boolean resume = false, repeatedPlateE = false, repeatedPlateH = false, repeatedPlateC = false;
 		//////
 		/////
 
@@ -116,20 +116,26 @@ public class functionsDataCars {
 			if (functionsRegularExp.verRegExCarPlate(carPlate) == true) {
 				for (int i = 0; i < Menu.electricList.size(); i++) {
 					if (carPlate.equals(Menu.electricList.get(i).getCarPlate()))
-						repeatedPlate = true;
+						repeatedPlateE = true;
+					else
+						repeatedPlateE = false;
 				}// end_for
 				//////
 				for (int i = 0; i < Menu.hybridList.size(); i++) {
 					if (carPlate.equals(Menu.hybridList.get(i).getCarPlate()))
-						repeatedPlate = true;
+						repeatedPlateH = true;
+					else
+						repeatedPlateH = false;
 				}// end_for
 				//////
 				for (int i = 0; i < Menu.combustionList.size(); i++) {
 					if (carPlate.equals(Menu.combustionList.get(i).getCarPlate()))
-						repeatedPlate = true;
+						repeatedPlateC = true;
+					else
+						repeatedPlateC = false;
 				}// end_for
 				//////
-				if (repeatedPlate == false)
+				if (repeatedPlateE == false && repeatedPlateH == false && repeatedPlateC == false)
 					resume = true;
 				else
 					JOptionPane.showMessageDialog(null, "The Plate of the Car is repeated", "Error", JOptionPane.ERROR_MESSAGE);

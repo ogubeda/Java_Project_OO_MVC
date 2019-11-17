@@ -55,17 +55,30 @@ public class functionsCars_crud {
 		//////
 		String cad = "";
 		String[] options = {"Continue"};
+		int select = 0;
 		//////
 		/////
 		
 		if (engine == 0) {
-			cad = Menu.electricList.get(functionsSearchCar.searchCarElectric(Menu.electricList, options)).toString();
+			select = functionsSearchCar.searchCarElectric(Menu.electricList, options);
+			if (select == -2)
+				cad = null;
+			else
+				cad = Menu.electricList.get(select).toString();
 			//////
 		}else if (engine == 1) {
-			cad = Menu.hybridList.get(functionsSearchCar.searchCarHybrid(Menu.hybridList, options)).toString();
+			select = functionsSearchCar.searchCarHybrid(Menu.hybridList, options);
+			if (select == -2)
+				cad = null;
+			else
+				cad = Menu.hybridList.get(select).toString();
 			//////
 		}else if (engine == 2) {
-			cad = Menu.combustionList.get(functionsSearchCar.searchCarCombustion(Menu.combustionList, options)).toString();
+			select = functionsSearchCar.searchCarCombustion(Menu.combustionList, options);
+			if (select == -2)
+				cad = null;
+			else
+				cad = Menu.combustionList.get(select).toString();
 		}// end_else
 		//////
 		return cad;
@@ -73,9 +86,9 @@ public class functionsCars_crud {
 	//////
 	/////
 	
-	public void updateCar(int engine) {
+	public int updateCar(int engine) {
 		//////
-		int select = 0, selectButton = 0;
+		int select = 0, selectButton = 0, returnedValue = 0;
 		//////
 		/////
 		
@@ -121,11 +134,15 @@ public class functionsCars_crud {
 					break;
 					//////
 				default:
+					returnedValue = -2;
 					break;
 					//////
 			}// end_switch
 		}else if (engine == 1) {
 			select = functionsSearchCar.searchCarHybrid(Menu.hybridList, options);
+			if (select == -2)
+				returnedValue = -2;
+			else {
 			selectButton = functionsMenu.buttonMenu(optionsHybrid, "Choose an option to edit.", "Edit");
 		//////
 					switch (selectButton) {
@@ -166,9 +183,11 @@ public class functionsCars_crud {
 							break;
 							//////
 						default:
+							returnedValue = -2;
 							break;
 							//////
 					}// end_switch
+				}// end_else
 		}else if (engine == 2) {
 			select = functionsSearchCar.searchCarCombustion(Menu.combustionList, options);
 			selectButton = functionsMenu.buttonMenu(optionsCombustion, "Choose an option to edit.", "Edit");
@@ -215,16 +234,18 @@ public class functionsCars_crud {
 							break;
 							//////
 						default:
+							returnedValue = -2;
 							break;
 							//////
 					}// end_switch
 		}// end_else
 		///////
+		return returnedValue;
 	}// end_updateCar
 	//////
 	/////
 	
-	public void deleteCar(int engine) {
+	public int deleteCar(int engine) {
 		String[] options = {"Continue", "Back"};
 		int select = 0;
 		//////
@@ -251,6 +272,7 @@ public class functionsCars_crud {
 			else
 				Menu.combustionList.remove(select).toString();
 		}// end_else
+		return select;
 	}// end_deleteCar
 	//////
 	/////

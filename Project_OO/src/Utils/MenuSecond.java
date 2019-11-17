@@ -7,8 +7,9 @@ public class MenuSecond {
 	public static void menuSecondary(int engine) {
 		String[] options = {"Create", "Read", "Update", "Remove", "Back"};
 		Object[] optSec = {"", "Back", "Exit"};
-		int selection = 0;
+		int selection = 0, returnedInt = 0;
 		boolean replay = false, stop = false;
+		String returnedString = "";
 		functionsCars_crud pd = new functionsCars_crud();
 		//////
 		/////
@@ -31,7 +32,11 @@ public class MenuSecond {
 							replay = false;
 						}else {
 							optSec[0] = "Search other car";
-							replay = functionsMenu.buttonMenuSec(optSec, pd.readCar(engine) + "\nChoose an option.", "Ex2");
+							returnedString = pd.readCar(engine);
+							if (returnedString == null)
+								replay = false;
+							else
+								replay = functionsMenu.buttonMenuSec(optSec, returnedString + "\nChoose an option.", "Ex2");
 						}// end_else
 					}while (replay == true);
 					break;
@@ -43,8 +48,11 @@ public class MenuSecond {
 							replay = false;
 						}else{
 							optSec[0] = "Update other car";
-							pd.updateCar(engine);
-							replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Ex3");
+							returnedInt = pd.updateCar(engine);
+							if (returnedInt == -2)
+								replay = false;
+							else
+								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Ex3");
 						}// end_else
 					}while (replay == true);
 					break;
@@ -56,8 +64,11 @@ public class MenuSecond {
 							replay = false;
 						}else {
 							optSec[0] = "Delete other car";
-							pd.deleteCar(engine);
-							replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Ex3");
+							returnedInt = pd.deleteCar(engine);
+							if (returnedInt == -2)
+								replay = false;
+							else
+								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Ex3");
 						}// end_else
 					}while (replay == true);
 					break;
