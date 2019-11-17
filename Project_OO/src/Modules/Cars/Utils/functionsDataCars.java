@@ -1,7 +1,7 @@
 package Modules.Cars.Utils;
 
 import javax.swing.JOptionPane;
-
+import Utils.Menu;
 public class functionsDataCars {
 	//////Creación de las funciones para crear los atributos generales
 	/////
@@ -107,15 +107,33 @@ public class functionsDataCars {
 	public static String createCarPlate (String message, String title) {
 		//////
 		String carPlate = "";
-		boolean resume = false;
+		boolean resume = false, repeatedPlate = false;
 		//////
 		/////
 
 		do {
 			carPlate = functions.verString(message, title);
-			if (functionsRegularExp.verRegExCarPlate(carPlate) == true)
-				resume = true;
-			else
+			if (functionsRegularExp.verRegExCarPlate(carPlate) == true) {
+				for (int i = 0; i < Menu.electricList.size(); i++) {
+					if (carPlate.equals(Menu.electricList.get(i).getCarPlate()))
+						repeatedPlate = true;
+				}// end_for
+				//////
+				for (int i = 0; i < Menu.hybridList.size(); i++) {
+					if (carPlate.equals(Menu.hybridList.get(i).getCarPlate()))
+						repeatedPlate = true;
+				}// end_for
+				//////
+				for (int i = 0; i < Menu.combustionList.size(); i++) {
+					if (carPlate.equals(Menu.combustionList.get(i).getCarPlate()))
+						repeatedPlate = true;
+				}// end_for
+				//////
+				if (repeatedPlate == false)
+					resume = true;
+				else
+					JOptionPane.showMessageDialog(null, "The Plate of the Car is repeated", "Error", JOptionPane.ERROR_MESSAGE);
+		}else
 				JOptionPane.showMessageDialog(null, "You have introduced an invalid format", "Error", JOptionPane.ERROR_MESSAGE);
 		}while (resume == false);
 		//////
