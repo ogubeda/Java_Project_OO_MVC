@@ -12,6 +12,13 @@ public class Hybrid extends Cars {
 		this.typeSecond = typeSecond;
 	}// end_constructor_Hybrid
 
+	public Hybrid() { // Constructor vacio
+	}// end_Hybrid_Empty
+
+	public Hybrid(String carPlate) { // Constructor Clave Primaria
+		super(carPlate);
+	}// end_Hybrid_PK
+
 	public String getTypeSecond() {
 		return typeSecond;
 	}
@@ -22,7 +29,7 @@ public class Hybrid extends Cars {
 
 	@Override
 	public String toString() {
-		return "Brand: " + getBrand() + " Model: " + getModel() + "\nSeats: " + getSeats() + 
+		return getBrand() + " " + getModel() + "\nSeats: " + getSeats() + 
 				"\nParking Help: " + getParkinghelp() + "\nDoors: " + getDoors() + "\nCar Plate: " + getCarPlate() + "\nStart date: " + getdStart() + 
 				"\nFinish date: " + getdEnd() + "\nNumber of days: " + getNumDays() + "\nType: " + getTypeSecond() + "\nPrice: " + getPrice();
 	}

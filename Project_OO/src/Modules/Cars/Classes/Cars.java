@@ -19,12 +19,12 @@ public abstract class Cars implements Comparable<Cars> {
 	
 	public Cars(String brand, String model, int seats, boolean parkinghelp, int doors, String carPlate,Fecha dStart, Fecha dEnd) {
 		super();
+		this.carPlate = carPlate;
 		this.brand = brand;
 		this.model = model;
 		this.seats = seats;
 		this.parkinghelp = parkinghelp;
 		this.doors = doors;
-		this.carPlate = carPlate;
 		this.dStart = dStart;
 		this.dEnd = dEnd;
 		this.setNumDays();

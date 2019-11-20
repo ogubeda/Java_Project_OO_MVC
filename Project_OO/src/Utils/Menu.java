@@ -1,5 +1,9 @@
 package Utils;
 
+import java.util.ArrayList;
+
+import Modules.Cars.Classes.*;
+import Modules.Cars.Classes.Singleton;
 import Modules.Cars.Utils.*;
 
 public class Menu {
@@ -8,6 +12,10 @@ public class Menu {
 		String[] options = {"Electric", "Hybrid", "Combustion", "Exit"};
 		int selection = 0;
 		boolean stop = false;
+		Singleton.electricList = new ArrayList<Electric>();
+		Singleton.hybridList = new ArrayList<Hybrid>();
+		Singleton.combustionList = new ArrayList<Combustion>();
+
 		//////
 		/////
 		

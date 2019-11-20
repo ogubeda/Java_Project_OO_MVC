@@ -1,12 +1,13 @@
 package Utils;
 
 import javax.swing.JOptionPane;
+
+import Modules.Cars.Classes.Singleton;
 import Modules.Cars.Utils.*;
-import Modules.Order.Singleton;
 public class MenuSecond {
 	//////
 	public static void menuSecondary(int engine) {
-		String[] options = {"Create", "Read", "Update", "Remove", "Back"};
+		String[] options = {"Create", "Read", "Update", "Remove", "Order","Back"};
 		Object[] optSec = {"", "Back", "Exit"};
 		int selection = 0, returnedInt = 0;
 		boolean replay = false, stop = false;
@@ -22,55 +23,72 @@ public class MenuSecond {
 					do {
 						optSec[0] = "Create other car";
 						pd.createCar(engine);
-						replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Ex1");
+						replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Create Car");
 					}while (replay == true);
 					break;
 					//////
 				case 1:
 					do {
-						if (((Singleton.electricList.isEmpty()) && (engine == 0)) || ((Singleton.hybridList.isEmpty()) && (engine == 1)) || ((Singleton.combustionList.isEmpty()) && (engine == 2))) {
-							JOptionPane.showMessageDialog(null, "There's not created cars.", "Error", JOptionPane.ERROR_MESSAGE);
+						if (checkCars(engine))
 							replay = false;
-						}else {
+						else {
 							optSec[0] = "Search other car";
 							returnedString = pd.readCar(engine);
 							if (returnedString == null)
 								replay = false;
 							else
-								replay = functionsMenu.buttonMenuSec(optSec, returnedString + "\nChoose an option.", "Ex2");
+								replay = functionsMenu.buttonMenuSec(optSec, returnedString + "\nChoose an option.", "Read Car");
 						}// end_else
 					}while (replay == true);
 					break;
 					//////
 				case 2:
 					do {
-						if (((Singleton.electricList.isEmpty()) && (engine == 0)) || ((Singleton.hybridList.isEmpty()) && (engine == 1)) || ((Singleton.combustionList.isEmpty()) && (engine == 2))) {
-							JOptionPane.showMessageDialog(null, "There's not created cars.", "Error", JOptionPane.ERROR_MESSAGE);
+						if (checkCars(engine))
 							replay = false;
-						}else{
+						else{
 							optSec[0] = "Update other car";
 							returnedInt = pd.updateCar(engine);
-							if (returnedInt == -2)
+							if (returnedInt == -1)
 								replay = false;
 							else
-								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Ex3");
+								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Update Car");
 						}// end_else
 					}while (replay == true);
 					break;
 					//////
 				case 3:
 					do {
-						if (((Singleton.electricList.isEmpty()) && (engine == 0)) || ((Singleton.hybridList.isEmpty()) && (engine == 1)) || ((Singleton.combustionList.isEmpty()) && (engine == 2))) {
-							JOptionPane.showMessageDialog(null, "There's not created cars.", "Error", JOptionPane.ERROR_MESSAGE);
+						if (checkCars(engine))
 							replay = false;
-						}else {
+						else {
 							optSec[0] = "Delete other car";
 							returnedInt = pd.deleteCar(engine);
-							if (returnedInt == -2)
+							if (returnedInt == -1)
 								replay = false;
 							else
-								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Ex3");
+								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Delete Car");
 						}// end_else
+					}while (replay == true);
+					break;
+					//////
+				case 4:
+					do {
+						if (checkCars(engine))
+							replay = false;
+						else {
+							optSec[0] = "Order again";
+							if (engine == 0)
+								returnedInt = functionsOrder.orderElectric();
+							if (engine == 1)
+								returnedInt = functionsOrder.orderHybrid();
+							if (engine == 2)
+								returnedInt = functionsOrder.orderCombustion();
+							if (returnedInt == -1)
+								replay = false;
+							else
+								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Order Cars");
+						}
 					}while (replay == true);
 					break;
 					//////
@@ -81,6 +99,19 @@ public class MenuSecond {
 			}// end_switch
 		}while (stop == false);
 	}// end_main
+	//////
+	/////
+
+	public static boolean checkCars(int engine) {
+		//////
+		/////
+
+		if (((Singleton.electricList.isEmpty()) && (engine == 0)) || ((Singleton.hybridList.isEmpty()) && (engine == 1)) || ((Singleton.combustionList.isEmpty()) && (engine == 2))) {
+			JOptionPane.showMessageDialog(null, "There's not created cars.", "Error", JOptionPane.ERROR_MESSAGE);
+			return true;
+		}// end_if
+		return false;
+	}// end_checkCars
 	//////
 	/////
 }// end_MenuSecond

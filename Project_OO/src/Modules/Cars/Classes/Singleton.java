@@ -1,7 +1,6 @@
-package Modules.Order;
+package Modules.Cars.Classes;
 
 import java.util.ArrayList;
-import Modules.Cars.Classes.*;
 
 public class Singleton {
     //////

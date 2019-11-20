@@ -12,6 +12,14 @@ public class Combustion extends Cars {
 		this.typeComb = typeComb;
 	}// end_constructor_Combustion
 
+	public Combustion() { // Constructor vacio
+
+	}// end_Combustion_Empty
+
+	public Combustion(String carPlate) { // Constructor Clave Primaria
+		super(carPlate);
+	}// end_Combustion_PK
+
 	public String getTypeComb() {
 		return typeComb;
 	}
@@ -22,7 +30,7 @@ public class Combustion extends Cars {
 	
 	@Override
 	public String toString() {
-		return "Brand: " + getBrand() + " Model: " + getModel() + "\n Seats" + getSeats() + 
+		return getBrand() + " " + getModel() + "\n Seats" + getSeats() + 
 				"\nParking Help: " + getParkinghelp() + "\nDoors: " + getDoors() + "\nCar Plate: " + getCarPlate() +"\nStart date: " + getdStart() + 
 				"\nFinish date: " + getdEnd() + "\nNumber of days: " + getNumDays() + "\nType: " + getTypeComb() + "\nPrice: " + getPrice();
 	}

@@ -90,7 +90,6 @@ public class Fecha {
 	public boolean verSysDate() {
 		//////
 		Calendar cal = Calendar.getInstance();
-		System.out.println(this.year + "/" + this.month + "/" + this.day);
 		if (this.year > cal.get(Calendar.YEAR))
 			return true;
 		else if (this.year == cal.get(Calendar.YEAR)) {

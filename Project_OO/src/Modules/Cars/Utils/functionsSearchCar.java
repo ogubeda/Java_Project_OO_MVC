@@ -3,17 +3,16 @@ package Modules.Cars.Utils;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Modules.Cars.Classes.*;
-import Modules.Order.Singleton;
 
 public class functionsSearchCar {
     //////
-    public static int searchCarElectric(ArrayList<Electric> engineList, String[] options) { 
+    public static int searchCarElectric(ArrayList<Electric> engineList) { 
         ArrayList<Integer> posList = new ArrayList<Integer>();
         ArrayList<String> modelList = new ArrayList<String>();
-        int select = 0, selectFilter = 0, seats = 0, doors = 0, batery = 0, returnedValue = 0;
+        int select = 0, selectFilter = 0, seats = 0, doors = 0, battery = 0, returnedValue = 0;
         boolean parkingHelp = false, resume = false, exit = false;
 		String test = "";
-		String[] optionsElectric = {"Show All", "Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Batery", "Back"};
+		String[] optionsElectric = {"Show All", "Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "battery", "Back"};
         //////
         do {
             selectFilter = functionsMenu.buttonMenu(optionsElectric, "Choose an option.", "Choose a filter");
@@ -86,9 +85,9 @@ public class functionsSearchCar {
                     break;
                     //////
                 case 7:
-                    batery = functionsDataCars.createBatery("Introduce the capacity of the Battery of the car.", "Battery Filter");
+                    battery = functionsDataCars.createbattery("Introduce the capacity of the Battery of the car.", "Battery Filter");
                     for (int i = 0; i < engineList.size(); i++) {
-                        if (batery == Singleton.electricList.get(i).getBatery()) {
+                        if (battery == Singleton.electricList.get(i).getbattery()) {
                             modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
                             posList.add(i);
                         }// end_if
@@ -102,14 +101,20 @@ public class functionsSearchCar {
             }// end_switch
             if (modelList.size() > 0) {
                 String[] modelButtons = modelList.toArray(new String[0]);
-                select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select", options);
-                returnedValue = posList.get(select);
-                resume = true;
+                select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select");
+                if (select == -1){
+                    resume = false;
+                    modelList.clear();
+                    posList.clear();
+                }else{
+                    returnedValue = posList.get(select);
+                    resume = true;
+                }
             }else {
                 if (exit == false)
                     JOptionPane.showMessageDialog(null, "No matches.", "Error", JOptionPane.ERROR_MESSAGE);
                 else {
-                    returnedValue = -2;
+                    returnedValue = -1;
                     resume = true;
                 }
             }
@@ -119,7 +124,7 @@ public class functionsSearchCar {
     //////
     /////
 
-    public static int searchCarHybrid(ArrayList<Hybrid> engineList, String[] options) { 
+    public static int searchCarHybrid(ArrayList<Hybrid> engineList) { 
         ArrayList<Integer> posList = new ArrayList<Integer>();
         ArrayList<String> modelList = new ArrayList<String>();
         int select = 0, selectFilter = 0, seats = 0, doors = 0, returnedValue = 0;
@@ -214,14 +219,20 @@ public class functionsSearchCar {
             }// end_switch
             if (modelList.size() > 0) {
                 String[] modelButtons = modelList.toArray(new String[0]);
-                select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select", options);
-                returnedValue = posList.get(select);
-                resume = true;
+                select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select");
+                if (select == -1){
+                    resume = false;
+                    modelList.clear();
+                    posList.clear();
+                }else{
+                    returnedValue = posList.get(select);
+                    resume = true;
+                }
             }else {
                 if (exit == false)
                     JOptionPane.showMessageDialog(null, "No matches.", "Error", JOptionPane.ERROR_MESSAGE);
                 else {
-                    returnedValue = -2;
+                    returnedValue = -1;
                     resume = true;
                 }
             }
@@ -233,7 +244,7 @@ public class functionsSearchCar {
     //////
     /////
 
-    public static int searchCarCombustion(ArrayList<Combustion> engineList, String[] options) { 
+    public static int searchCarCombustion(ArrayList<Combustion> engineList) { 
         ArrayList<Integer> posList = new ArrayList<Integer>();
         ArrayList<String> modelList = new ArrayList<String>();
         int select = 0, selectFilter = 0, seats = 0, doors = 0, returnedValue = 0;
@@ -328,14 +339,20 @@ public class functionsSearchCar {
             }// end_switch
             if (modelList.size() > 0) {
                 String[] modelButtons = modelList.toArray(new String[0]);
-                select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select", options);
-                returnedValue = posList.get(select);
-                resume = true;
+                select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select");
+                if (select == -1){
+                        resume = false;
+                        modelList.clear();
+                        posList.clear();
+                }else{
+                        returnedValue = posList.get(select);
+                        resume = true;
+                    }
             }else {
                 if (exit == false)
                     JOptionPane.showMessageDialog(null, "No matches.", "Error", JOptionPane.ERROR_MESSAGE);
                 else {
-                    returnedValue = -2;
+                    returnedValue = -1;
                     resume = true;
                 }
             }

@@ -1,17 +1,15 @@
 package Modules.Cars.Utils;
 
 import Modules.Cars.Classes.*;
-import Modules.Order.Singleton;
 import Utils.*;
 import Classes.*;
 import javax.swing.JOptionPane;
 
 public class functionsCars_crud {
 	//////
-	private String[] optionsElectric = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Batery", "Back"};
+	private String[] optionsElectric = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "battery", "Back"};
 	private String[] optionsHybrid = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Type Hybrid", "Back"};
 	private String[] optionsCombustion = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Type Combustion", "Back"};
-	private String[] options = {"Continue", "Back"};
 	//////
 	public void createCar(int engine) {
 		Electric carElectric = null;
@@ -20,7 +18,7 @@ public class functionsCars_crud {
 		Fecha dStart = null, dEnd = null;
 		//////
 		String brand = "", model = "", typeHybrid = "", typeComb = "", carPlate = "";
-		int seats = 0, doors = 0, batery = 0;
+		int seats = 0, doors = 0, battery = 0;
 		boolean parkinghelp = false;
 		//////
 		/////
@@ -35,8 +33,8 @@ public class functionsCars_crud {
 		dEnd = functionsDate_crud.createEDate("What day you want to return the car?\nFormat: yyyy/mm/dd", "Introduce the End Day", dStart);
 		///////
 		if (engine == 0) {
-			batery = functionsDataCars.createBatery("Introduce the capacity of the Batery of the car.", "Introduce the Batery");
-			carElectric = new Electric(brand, model, seats, parkinghelp, doors, carPlate,dStart, dEnd, batery);
+			battery = functionsDataCars.createbattery("Introduce the capacity of the battery of the car.", "Introduce the battery");
+			carElectric = new Electric(brand, model, seats, parkinghelp, doors, carPlate,dStart, dEnd, battery);
 			Singleton.electricList.add(carElectric);
 		}else if (engine == 1) {
 			typeHybrid = functionsDataCars.createTypeHybrid("Choose the type for the Hybrid Engine.", "Select the Hybrid Engine");
@@ -55,28 +53,27 @@ public class functionsCars_crud {
 	public String readCar(int engine) {
 		//////
 		String cad = "";
-		String[] options = {"Continue"};
 		int select = 0;
 		//////
 		/////
 		
 		if (engine == 0) {
-			select = functionsSearchCar.searchCarElectric(Singleton.electricList, options);
-			if (select == -2)
+			select = functionsSearchCar.searchCarElectric(Singleton.electricList);
+			if (select == -1)
 				cad = null;
 			else
 				cad = Singleton.electricList.get(select).toString();
 			//////
 		}else if (engine == 1) {
-			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList, options);
-			if (select == -2)
+			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList);
+			if (select == -1)
 				cad = null;
 			else
 				cad = Singleton.hybridList.get(select).toString();
 			//////
 		}else if (engine == 2) {
-			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList, options);
-			if (select == -2)
+			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList);
+			if (select == -1)
 				cad = null;
 			else
 				cad = Singleton.combustionList.get(select).toString();
@@ -94,7 +91,7 @@ public class functionsCars_crud {
 		/////
 		
 		if (engine == 0) {
-			select = functionsSearchCar.searchCarElectric(Singleton.electricList, options);
+			select = functionsSearchCar.searchCarElectric(Singleton.electricList);
 			selectButton = functionsMenu.buttonMenu(optionsElectric, "Choose an option to edit.", "Edit");
 			//////
 			switch (selectButton) {
@@ -131,18 +128,18 @@ public class functionsCars_crud {
 					break;
 					//////
 				case 8:
-					Singleton.electricList.get(select).setBatery(functionsDataCars.createBatery("Introduce the new capacity for the Batery.", "Introduce the Batery"));
+					Singleton.electricList.get(select).setbattery(functionsDataCars.createbattery("Introduce the new capacity for the battery.", "Introduce the battery"));
 					break;
 					//////
 				default:
-					returnedValue = -2;
+					returnedValue = -1;
 					break;
 					//////
 			}// end_switch
 		}else if (engine == 1) {
-			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList, options);
-			if (select == -2)
-				returnedValue = -2;
+			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList);
+			if (select == -1)
+				returnedValue = -1;
 			else {
 			selectButton = functionsMenu.buttonMenu(optionsHybrid, "Choose an option to edit.", "Edit");
 		//////
@@ -184,13 +181,13 @@ public class functionsCars_crud {
 							break;
 							//////
 						default:
-							returnedValue = -2;
+							returnedValue = -1;
 							break;
 							//////
 					}// end_switch
 				}// end_else
 		}else if (engine == 2) {
-			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList, options);
+			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList);
 			selectButton = functionsMenu.buttonMenu(optionsCombustion, "Choose an option to edit.", "Edit");
 		//////
 					switch (selectButton) {
@@ -235,7 +232,7 @@ public class functionsCars_crud {
 							break;
 							//////
 						default:
-							returnedValue = -2;
+							returnedValue = -1;
 							break;
 							//////
 					}// end_switch
@@ -247,28 +244,28 @@ public class functionsCars_crud {
 	/////
 	
 	public int deleteCar(int engine) {
-		String[] options = {"Continue", "Back"};
+		//////
 		int select = 0;
 		//////
 		/////
 		
 		if (engine == 0) {
-			select = functionsSearchCar.searchCarElectric(Singleton.electricList, options);
-			if (select == -2)
+			select = functionsSearchCar.searchCarElectric(Singleton.electricList);
+			if (select == -1)
 				JOptionPane.showMessageDialog(null, "Going back.", "Back", JOptionPane.INFORMATION_MESSAGE);
 			else
 				Singleton.electricList.remove(select).toString();
 			//////
 		}else if (engine == 1) {
-			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList, options);
-			if (select == -2)
+			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList);
+			if (select == -1)
 				JOptionPane.showMessageDialog(null, "Going back.", "Back", JOptionPane.INFORMATION_MESSAGE);
 			else
 				Singleton.hybridList.remove(select).toString();
 			//////
 		}else if (engine == 2) {
-			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList, options);
-			if (select == -2)
+			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList);
+			if (select == -1)
 				JOptionPane.showMessageDialog(null, "Going back", "Back", JOptionPane.INFORMATION_MESSAGE);
 			else
 				Singleton.combustionList.remove(select).toString();

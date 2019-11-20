@@ -75,10 +75,11 @@ public class functionsMenu {
 	//////
 	/////
 	
-	public static int comboBoxMenu(String[] comboBody, String message, String title, String[] options) {
+	public static int comboBoxMenu(String[] comboBody, String message, String title) {
 		//////
 		JComboBox<String> modelsBox = new JComboBox<String>(comboBody);
 		Object[] miau = {message, modelsBox};
+		String[] options = {"Continue", "Back"};
 		int select = 0, returnValueInt = 0;
 		boolean exit = false;
 		//////
@@ -90,7 +91,7 @@ public class functionsMenu {
 				returnValueInt = modelsBox.getSelectedIndex();
 				exit = true;
 			}if (select == 1) {
-				returnValueInt = -2;
+				returnValueInt = -1;
 				exit = true;
 			}if (select == JOptionPane.CLOSED_OPTION) {
 				exit = functionsMenu.exitConf_win("Do you want to exit?", "Exit");

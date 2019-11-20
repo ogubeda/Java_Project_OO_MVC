@@ -2,7 +2,8 @@ package Modules.Cars.Utils;
 
 import javax.swing.JOptionPane;
 
-import Modules.Order.Singleton;
+import Modules.Cars.Classes.Singleton;
+
 public class functionsDataCars {
 	//////Creación de las funciones para crear los atributos generales
 	/////
@@ -190,23 +191,23 @@ public class functionsDataCars {
 	/////
 	
 	//////Funciones para crear los atributos de objetos especificos
-	public static int createBatery(String message, String title) {
+	public static int createbattery(String message, String title) {
 		//////
-		int batery = 0;
+		int battery = 0;
 		boolean resume = false;
 		//////
 		/////
 		
 		do {
-			batery = functions.ver_int(message, title);
-			if (batery < 60)
+			battery = functions.ver_int(message, title);
+			if (battery < 60)
 				JOptionPane.showMessageDialog(null, "There isn't bateries lower than 60kWh.", "Error", JOptionPane.ERROR_MESSAGE);
 			else
 				resume = true;
 		}while (resume == false);
 		//////
-		return batery;
-	}// end_createBatery
+		return battery;
+	}// end_createbattery
 	//////
 	/////
 	
@@ -215,11 +216,10 @@ public class functionsDataCars {
 		String typeHybrid = "";
 		int type = 0;
 		String[] comboBody = {"Electric/Diesel", "Electric/Petrol", "Hydrogen/Diesel", "Hydrogen/Petorl"};
-		String[] options = {"Continue", "Back"};
 		//////
 		/////
 		
-		type = functionsMenu.comboBoxMenu(comboBody, message, title, options);
+		type = functionsMenu.comboBoxMenu(comboBody, message, title);
 		if (type == 0)
 			typeHybrid = comboBody[0];
 		if (type == 1)
