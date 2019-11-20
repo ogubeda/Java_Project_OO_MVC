@@ -10,13 +10,14 @@ public class functionsOrder {
     public static int orderElectric() {
         //////
         String[] optionsCombo = {"Brand", "Model", "Start Day", "End Day", "Number of Days", "Battery"};
-        int select = 0, returnedInt = 0;
+        int select = 0, menuOrderSel = 0, returnedInt = 0;
         //////
         /////
     
         select = functionsMenu.comboBoxMenu(optionsCombo, "Choose the option for order.", "Order Electric Cars");
         switch (select) {
             case 0:
+                menuOrderSel = OrderMenu.menuString("Order Brand");
                 Collections.sort(Singleton.electricList, new OrderBrand());
                 break;
                 //////

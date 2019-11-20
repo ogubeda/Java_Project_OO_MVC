@@ -1,7 +1,6 @@
 package Modules.Order;
 
 import java.util.Comparator;
-
 import Modules.Cars.Classes.Cars;
 
 public class OrderBrand implements Comparator<Cars> {

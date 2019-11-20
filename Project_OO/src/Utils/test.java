@@ -33,5 +33,4 @@ public class test {
 		//functionsDate_crud.createSDate("Hola", "Hola", "Hola", "hola");
 		//testDate.verDate();
 	}// end_testDate
-//test
 }// end_test

@@ -4,6 +4,12 @@
             "type": "java",
             "name": "CodeLens (Launch) - Menu",
             "request": "launch",
+            "mainClass": "Utils.Menu"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Menu",
+            "request": "launch",
             "mainClass": "Utils.Menu",
             "projectName": "Project_OO-1_787739cf"
         },
