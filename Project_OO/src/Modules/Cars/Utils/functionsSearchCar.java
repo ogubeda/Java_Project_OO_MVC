@@ -9,85 +9,31 @@ public class functionsSearchCar {
     public static int searchCarElectric(ArrayList<Electric> engineList) { 
         ArrayList<Integer> posList = new ArrayList<Integer>();
         ArrayList<String> modelList = new ArrayList<String>();
-        int select = 0, selectFilter = 0, seats = 0, doors = 0, battery = 0, returnedValue = 0;
-        boolean parkingHelp = false, resume = false, exit = false;
+        int select = 0, selectFilter = 0,returnedValue = 0;
+        boolean resume = false, exit = false;
 		String test = "";
-		String[] optionsElectric = {"Show All", "Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "battery", "Back"};
+		String[] optionsElectric = {"Show All", "Search Car Plate", "Back"};
         //////
         do {
             selectFilter = functionsMenu.buttonMenu(optionsElectric, "Choose an option.", "Choose a filter");
             switch(selectFilter) {
                 case 0:
-                    for (int i = 0; i < engineList.size(); i++) {
+                    /*for (int i = 0; i < engineList.size(); i++) {
                         modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
                         posList.add(i);
                     }// end_for
+                    String[] modelButtons = modelList.toArray(new String[0]);
+                    select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select");
+                    returnedValue = posList.get(select);
+                    resume = true;
+                    */
+                    select = filterCars.filterAllElectric(engineList);
                     break;
                     //////
                 case 1:
-                    test = functionsDataCars.createBrand("Introduce the Brand of the car.", "Brand Filter");
+                    test = functionsDataCars.createCarPlate("Introduce the Plate of the Car.", "Search Car Plate");
                     for (int i = 0; i < engineList.size(); i++) {
                         if (test.equals(Singleton.electricList.get(i).getBrand())) {
-                            modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                            posList.add(i);
-                        }// end_if
-                    }// end_for
-                    break;
-                    //////
-                case 2:
-                    test = functionsDataCars.createModel("Introduce the Model of the car.", "Model Filter");
-                    for (int i = 0; i < engineList.size(); i++) {
-                        if (test.equals(Singleton.electricList.get(i).getModel())) {
-                            modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                            posList.add(i);
-                        }// end_if
-                    }// end_for
-                    break;
-                    //////
-                case 3:
-                    seats = functionsDataCars.createSeats("Introduce the quantity of Seats of the car.", "Seats Filter");
-                    for (int i = 0; i < engineList.size(); i++) {
-                        if (seats == Singleton.electricList.get(i).getSeats()) {
-                            modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                            posList.add(i);
-                        }// end_if
-                    }// end_for
-                    break;
-                    //////
-                case 4:
-                    parkingHelp = functionsDataCars.createParkingHelp("Choose if the car have Parking Help", "Parking Help Filter");
-                    for (int i = 0; i < engineList.size(); i++) {
-                        if (parkingHelp == Singleton.electricList.get(i).getParkinghelp()) {
-                            modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                            posList.add(i);
-                        }// end_if
-                    }// end_for
-                    break;
-                    //////
-                case 5:
-                    doors = functionsDataCars.createDoors("Introduce the quantity of Doors of the car.", "Doors Filter");
-                    for (int i = 0; i < engineList.size(); i++) {
-                        if (doors == Singleton.electricList.get(i).getDoors()) {
-                            modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                            posList.add(i);
-                        }// end_if
-                    }// end_for
-                    break;
-                    //////
-                case 6:
-                    test = functionsDataCars.createCarPlate("Introduce the Plate of the Car.", "Car Plate Filter");
-                    for (int i = 0; i < engineList.size(); i++) {
-                        if (test.equals(Singleton.electricList.get(i).getCarPlate())) {
-                            modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                            posList.add(i);
-                        }// end_if
-                    }// end_for
-                    break;
-                    //////
-                case 7:
-                    battery = functionsDataCars.createbattery("Introduce the capacity of the Battery of the car.", "Battery Filter");
-                    for (int i = 0; i < engineList.size(); i++) {
-                        if (battery == Singleton.electricList.get(i).getbattery()) {
                             modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
                             posList.add(i);
                         }// end_if

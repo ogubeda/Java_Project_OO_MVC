@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - test",
+            "request": "launch",
+            "mainClass": "Utils.Test.test",
+            "projectName": "Project_OO-1_5ba113b6"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - testActionListener",
+            "request": "launch",
+            "mainClass": "Utils.Test.testActionListener",
+            "projectName": "Project_OO-1_5ba113b6"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - testActionListener",
             "request": "launch",
             "mainClass": "Utils.Test.testActionListener",

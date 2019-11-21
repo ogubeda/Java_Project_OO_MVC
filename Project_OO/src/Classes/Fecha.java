@@ -93,7 +93,7 @@ public class Fecha {
 		if (this.year > cal.get(Calendar.YEAR))
 			return true;
 		else if (this.year == cal.get(Calendar.YEAR)) {
-			if (this.month > cal.get(Calendar.MONTH))
+			if (this.month > (cal.get(Calendar.MONTH) + 1))
 				return true;
 			else if (this.month == (cal.get(Calendar.MONTH) + 1)) {
 				if (this.day >= cal.get(Calendar.DAY_OF_MONTH))
