@@ -73,23 +73,14 @@ public class MenuSecond {
 					break;
 					//////
 				case 4:
-					do {
-						if (checkCars(engine))
-							replay = false;
-						else {
-							optSec[0] = "Order again";
-							if (engine == 0)
-								returnedInt = functionsOrder.orderElectric();
-							if (engine == 1)
-								returnedInt = functionsOrder.orderHybrid();
-							if (engine == 2)
-								returnedInt = functionsOrder.orderCombustion();
-							if (returnedInt == -1)
-								replay = false;
-							else
-								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Order Cars");
+					if (checkCars(engine) == false) {
+						if (engine == 0)
+							functionsOrder.orderElectric();
+						if (engine == 1)
+							functionsOrder.orderHybrid();
+						if (engine == 2)
+							functionsOrder.orderCombustion();
 						}
-					}while (replay == true);
 					break;
 					//////
 				default:
