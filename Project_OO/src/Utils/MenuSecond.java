@@ -2,6 +2,7 @@ package Utils;
 
 import javax.swing.JOptionPane;
 import Modules.Cars.Utils.*;
+import Modules.Order.Singleton;
 public class MenuSecond {
 	//////
 	public static void menuSecondary(int engine) {
@@ -27,7 +28,7 @@ public class MenuSecond {
 					//////
 				case 1:
 					do {
-						if (((Menu.electricList.size() <= 0) && (engine == 0)) || ((Menu.hybridList.size() <= 0) && (engine == 1)) || ((Menu.combustionList.size() <= 0) && (engine == 2))) {
+						if (((Singleton.electricList.isEmpty()) && (engine == 0)) || ((Singleton.hybridList.isEmpty()) && (engine == 1)) || ((Singleton.combustionList.isEmpty()) && (engine == 2))) {
 							JOptionPane.showMessageDialog(null, "There's not created cars.", "Error", JOptionPane.ERROR_MESSAGE);
 							replay = false;
 						}else {
@@ -43,7 +44,7 @@ public class MenuSecond {
 					//////
 				case 2:
 					do {
-						if (((Menu.electricList.size() <= 0) && (engine == 0)) || ((Menu.hybridList.size() <= 0) && (engine == 1)) || ((Menu.combustionList.size() <= 0) && (engine == 2))) {
+						if (((Singleton.electricList.isEmpty()) && (engine == 0)) || ((Singleton.hybridList.isEmpty()) && (engine == 1)) || ((Singleton.combustionList.isEmpty()) && (engine == 2))) {
 							JOptionPane.showMessageDialog(null, "There's not created cars.", "Error", JOptionPane.ERROR_MESSAGE);
 							replay = false;
 						}else{
@@ -59,7 +60,7 @@ public class MenuSecond {
 					//////
 				case 3:
 					do {
-						if (((Menu.electricList.size() <= 0) && (engine == 0)) || ((Menu.hybridList.size() <= 0) && (engine == 1)) || ((Menu.combustionList.size() <= 0) && (engine == 2))) {
+						if (((Singleton.electricList.isEmpty()) && (engine == 0)) || ((Singleton.hybridList.isEmpty()) && (engine == 1)) || ((Singleton.combustionList.isEmpty()) && (engine == 2))) {
 							JOptionPane.showMessageDialog(null, "There's not created cars.", "Error", JOptionPane.ERROR_MESSAGE);
 							replay = false;
 						}else {

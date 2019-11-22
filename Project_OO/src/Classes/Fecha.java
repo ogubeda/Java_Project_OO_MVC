@@ -90,14 +90,20 @@ public class Fecha {
 	public boolean verSysDate() {
 		//////
 		Calendar cal = Calendar.getInstance();
-		if (this.year >= cal.get(Calendar.YEAR)) {
-			if (this.month >= (cal.get(Calendar.MONTH) + 1)) {
+		System.out.println(this.year + "/" + this.month + "/" + this.day);
+		if (this.year > cal.get(Calendar.YEAR))
+			return true;
+		else if (this.year == cal.get(Calendar.YEAR)) {
+			if (this.month > cal.get(Calendar.MONTH))
+				return true;
+			else if (this.month == (cal.get(Calendar.MONTH) + 1)) {
 				if (this.day >= cal.get(Calendar.DAY_OF_MONTH))
 					return true;
 				else
 					return false;
 			}else
 				return false;
+				
 		}else
 			return false;
 	}// end_verSysDate

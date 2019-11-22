@@ -1,6 +1,7 @@
 package Modules.Cars.Utils;
 
 import Modules.Cars.Classes.*;
+import Modules.Order.Singleton;
 import Utils.*;
 import Classes.*;
 import javax.swing.JOptionPane;
@@ -36,15 +37,15 @@ public class functionsCars_crud {
 		if (engine == 0) {
 			batery = functionsDataCars.createBatery("Introduce the capacity of the Batery of the car.", "Introduce the Batery");
 			carElectric = new Electric(brand, model, seats, parkinghelp, doors, carPlate,dStart, dEnd, batery);
-			Menu.electricList.add(carElectric);
+			Singleton.electricList.add(carElectric);
 		}else if (engine == 1) {
 			typeHybrid = functionsDataCars.createTypeHybrid("Choose the type for the Hybrid Engine.", "Select the Hybrid Engine");
 			carHybrid = new Hybrid(brand, model, seats, parkinghelp, doors, carPlate,dStart, dEnd, typeHybrid);
-			Menu.hybridList.add(carHybrid);
+			Singleton.hybridList.add(carHybrid);
 		}else if (engine == 2) {
 			typeComb = functionsDataCars.createTypeCombustion("Choose the type for the Combustion Engine.", "Select the Combustion Engine");
 			carCombustion = new Combustion(brand, model, seats, parkinghelp, doors, carPlate,dStart, dEnd, typeComb);
-			Menu.combustionList.add(carCombustion);
+			Singleton.combustionList.add(carCombustion);
 		}// end_if
 		///////
 	}// end_createCar
@@ -60,25 +61,25 @@ public class functionsCars_crud {
 		/////
 		
 		if (engine == 0) {
-			select = functionsSearchCar.searchCarElectric(Menu.electricList, options);
+			select = functionsSearchCar.searchCarElectric(Singleton.electricList, options);
 			if (select == -2)
 				cad = null;
 			else
-				cad = Menu.electricList.get(select).toString();
+				cad = Singleton.electricList.get(select).toString();
 			//////
 		}else if (engine == 1) {
-			select = functionsSearchCar.searchCarHybrid(Menu.hybridList, options);
+			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList, options);
 			if (select == -2)
 				cad = null;
 			else
-				cad = Menu.hybridList.get(select).toString();
+				cad = Singleton.hybridList.get(select).toString();
 			//////
 		}else if (engine == 2) {
-			select = functionsSearchCar.searchCarCombustion(Menu.combustionList, options);
+			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList, options);
 			if (select == -2)
 				cad = null;
 			else
-				cad = Menu.combustionList.get(select).toString();
+				cad = Singleton.combustionList.get(select).toString();
 		}// end_else
 		//////
 		return cad;
@@ -93,44 +94,44 @@ public class functionsCars_crud {
 		/////
 		
 		if (engine == 0) {
-			select = functionsSearchCar.searchCarElectric(Menu.electricList, options);
+			select = functionsSearchCar.searchCarElectric(Singleton.electricList, options);
 			selectButton = functionsMenu.buttonMenu(optionsElectric, "Choose an option to edit.", "Edit");
 			//////
 			switch (selectButton) {
 				case 0:
-					Menu.electricList.get(select).setBrand(functionsDataCars.createBrand("Introduce the new Brand of the car.", "Introduce the Brand"));
+					Singleton.electricList.get(select).setBrand(functionsDataCars.createBrand("Introduce the new Brand of the car.", "Introduce the Brand"));
 					break;
 					//////
 				case 1:
-					Menu.electricList.get(select).setModel(functionsDataCars.createModel("Introduce the new Model of the car.", "Introduce the Model"));
+					Singleton.electricList.get(select).setModel(functionsDataCars.createModel("Introduce the new Model of the car.", "Introduce the Model"));
 					break;
 					//////
 				case 2:
-					Menu.electricList.get(select).setSeats(functionsDataCars.createSeats("Introduce  the new quantity of Seats of the car.", "Introduce the Seats"));
+					Singleton.electricList.get(select).setSeats(functionsDataCars.createSeats("Introduce  the new quantity of Seats of the car.", "Introduce the Seats"));
 					break;
 					//////
 				case 3:
-					Menu.electricList.get(select).setParkinghelp(functionsDataCars.createParkingHelp("Choose the new option", "Choose the Parking Help"));
+					Singleton.electricList.get(select).setParkinghelp(functionsDataCars.createParkingHelp("Choose the new option", "Choose the Parking Help"));
 					break;
 					//////
 				case 4:
-					Menu.electricList.get(select).setDoors(functionsDataCars.createDoors("Introduce the new quantity of Doors of the car.", "Introduce the Doors"));
+					Singleton.electricList.get(select).setDoors(functionsDataCars.createDoors("Introduce the new quantity of Doors of the car.", "Introduce the Doors"));
 					break;
 					//////
 				case 5:
-					Menu.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
+					Singleton.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
 					break;
 					//////
 				case 6:
-					Menu.electricList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Menu.electricList.get(select).getdEndDate()));
+					Singleton.electricList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Singleton.electricList.get(select).getdEndDate()));
 					break;
 					//////
 				case 7:
-					Menu.electricList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Menu.electricList.get(select).getdStartDate()));
+					Singleton.electricList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Singleton.electricList.get(select).getdStartDate()));
 					break;
 					//////
 				case 8:
-					Menu.electricList.get(select).setBatery(functionsDataCars.createBatery("Introduce the new capacity for the Batery.", "Introduce the Batery"));
+					Singleton.electricList.get(select).setBatery(functionsDataCars.createBatery("Introduce the new capacity for the Batery.", "Introduce the Batery"));
 					break;
 					//////
 				default:
@@ -139,7 +140,7 @@ public class functionsCars_crud {
 					//////
 			}// end_switch
 		}else if (engine == 1) {
-			select = functionsSearchCar.searchCarHybrid(Menu.hybridList, options);
+			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList, options);
 			if (select == -2)
 				returnedValue = -2;
 			else {
@@ -147,39 +148,39 @@ public class functionsCars_crud {
 		//////
 					switch (selectButton) {
 						case 0:
-							Menu.hybridList.get(select).setBrand(functionsDataCars.createBrand("Introduce the new Brand of the car.", "Introduce the Brand"));
+							Singleton.hybridList.get(select).setBrand(functionsDataCars.createBrand("Introduce the new Brand of the car.", "Introduce the Brand"));
 							break;
 							//////
 						case 1:
-							Menu.hybridList.get(select).setModel(functionsDataCars.createModel("Introduce the new Model of the car.", "Introduce the Model"));
+							Singleton.hybridList.get(select).setModel(functionsDataCars.createModel("Introduce the new Model of the car.", "Introduce the Model"));
 							break;
 							//////
 						case 2:
-							Menu.hybridList.get(select).setSeats(functionsDataCars.createSeats("Introduce  the new quantity of Seats of the car.", "Introduce the Seats"));
+							Singleton.hybridList.get(select).setSeats(functionsDataCars.createSeats("Introduce  the new quantity of Seats of the car.", "Introduce the Seats"));
 							break;
 							//////
 						case 3:
-							Menu.hybridList.get(select).setParkinghelp(functionsDataCars.createParkingHelp("Choose the new option", "Choose the Parking Help"));
+							Singleton.hybridList.get(select).setParkinghelp(functionsDataCars.createParkingHelp("Choose the new option", "Choose the Parking Help"));
 							break;
 							//////
 						case 4:
-							Menu.hybridList.get(select).setDoors(functionsDataCars.createDoors("Introduce the new quantity of Doors of the car.", "Introduce the Doors"));
+							Singleton.hybridList.get(select).setDoors(functionsDataCars.createDoors("Introduce the new quantity of Doors of the car.", "Introduce the Doors"));
 							break;
 							//////
 						case 5:
-							Menu.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
+							Singleton.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
 							break;
 							//////
 						case 6:
-							Menu.hybridList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Menu.hybridList.get(select).getdEndDate()));
+							Singleton.hybridList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Singleton.hybridList.get(select).getdEndDate()));
 							break;
 							//////
 						case 7:
-							Menu.hybridList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Menu.hybridList.get(select).getdStartDate()));
+							Singleton.hybridList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Singleton.hybridList.get(select).getdStartDate()));
 							break;
 							//////
 						case 8:
-							Menu.hybridList.get(select).setTypeSecond(functionsDataCars.createTypeHybrid("Choose the new type of the Hybrid Engine.", "Choose the Hybrid Engine"));
+							Singleton.hybridList.get(select).setTypeSecond(functionsDataCars.createTypeHybrid("Choose the new type of the Hybrid Engine.", "Choose the Hybrid Engine"));
 							break;
 							//////
 						default:
@@ -189,48 +190,48 @@ public class functionsCars_crud {
 					}// end_switch
 				}// end_else
 		}else if (engine == 2) {
-			select = functionsSearchCar.searchCarCombustion(Menu.combustionList, options);
+			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList, options);
 			selectButton = functionsMenu.buttonMenu(optionsCombustion, "Choose an option to edit.", "Edit");
 		//////
 					switch (selectButton) {
 						case 0:
-							Menu.combustionList.get(select).setBrand(functionsDataCars.createBrand("Introduce the new Brand of the car.", "Introduce the Brand"));
+							Singleton.combustionList.get(select).setBrand(functionsDataCars.createBrand("Introduce the new Brand of the car.", "Introduce the Brand"));
 							break;
 							//////
 						case 1:
-							Menu.combustionList.get(select).setModel(functionsDataCars.createModel("Introduce the new Model of the car.", "Introduce the Model"));
+							Singleton.combustionList.get(select).setModel(functionsDataCars.createModel("Introduce the new Model of the car.", "Introduce the Model"));
 							break;
 							//////
 						case 2:
-							Menu.combustionList.get(select).setSeats(functionsDataCars.createSeats("Introduce  the new quantity of Seats of the car.", "Introduce the Seats"));
+							Singleton.combustionList.get(select).setSeats(functionsDataCars.createSeats("Introduce  the new quantity of Seats of the car.", "Introduce the Seats"));
 							break;
 							//////
 						case 3:
-							Menu.combustionList.get(select).setParkinghelp(functionsDataCars.createParkingHelp("Choose the new option", "Choose the Parking Help"));
+							Singleton.combustionList.get(select).setParkinghelp(functionsDataCars.createParkingHelp("Choose the new option", "Choose the Parking Help"));
 							break;
 							//////
 						case 4:
-							Menu.combustionList.get(select).setDoors(functionsDataCars.createDoors("Introduce the new quantity of Doors of the car.", "Introduce the Doors"));
+							Singleton.combustionList.get(select).setDoors(functionsDataCars.createDoors("Introduce the new quantity of Doors of the car.", "Introduce the Doors"));
 							break;
 							//////
 						case 5:
-							Menu.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
+							Singleton.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
 							break;
 							//////
 						case 6:
-							Menu.combustionList.get(select).setdStart(
+							Singleton.combustionList.get(select).setdStart(
 									functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", 
-											"Introduce the Start Day", Menu.combustionList.get(select).getdEndDate()));
+											"Introduce the Start Day", Singleton.combustionList.get(select).getdEndDate()));
 							break;
 							//////
 						case 7:
-							Menu.combustionList.get(select).setdEnd(
+							Singleton.combustionList.get(select).setdEnd(
 									functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", 
-											"Introduce the End Day", Menu.combustionList.get(select).getdStartDate()));
+											"Introduce the End Day", Singleton.combustionList.get(select).getdStartDate()));
 							break;
 							//////
 						case 8:
-							Menu.combustionList.get(select).setTypeComb(functionsDataCars.createTypeCombustion("Choose the new Type of the Combustion Engine", "Choose the Type of Combustion"));
+							Singleton.combustionList.get(select).setTypeComb(functionsDataCars.createTypeCombustion("Choose the new Type of the Combustion Engine", "Choose the Type of Combustion"));
 							break;
 							//////
 						default:
@@ -252,25 +253,25 @@ public class functionsCars_crud {
 		/////
 		
 		if (engine == 0) {
-			select = functionsSearchCar.searchCarElectric(Menu.electricList, options);
+			select = functionsSearchCar.searchCarElectric(Singleton.electricList, options);
 			if (select == -2)
 				JOptionPane.showMessageDialog(null, "Going back.", "Back", JOptionPane.INFORMATION_MESSAGE);
 			else
-				Menu.electricList.remove(select).toString();
+				Singleton.electricList.remove(select).toString();
 			//////
 		}else if (engine == 1) {
-			select = functionsSearchCar.searchCarHybrid(Menu.hybridList, options);
+			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList, options);
 			if (select == -2)
 				JOptionPane.showMessageDialog(null, "Going back.", "Back", JOptionPane.INFORMATION_MESSAGE);
 			else
-				Menu.hybridList.remove(select).toString();
+				Singleton.hybridList.remove(select).toString();
 			//////
 		}else if (engine == 2) {
-			select = functionsSearchCar.searchCarCombustion(Menu.combustionList, options);
+			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList, options);
 			if (select == -2)
 				JOptionPane.showMessageDialog(null, "Going back", "Back", JOptionPane.INFORMATION_MESSAGE);
 			else
-				Menu.combustionList.remove(select).toString();
+				Singleton.combustionList.remove(select).toString();
 		}// end_else
 		return select;
 	}// end_deleteCar

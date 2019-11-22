@@ -2,14 +2,14 @@ package Modules.Cars.Classes;
 
 import Classes.Fecha;
 
-public abstract class Cars {
+public abstract class Cars implements Comparable<Cars> {
 	//////
+	private String carPlate;
 	private String brand;
 	private String model;
 	private int seats;
 	private boolean parkinghelp;
 	private int doors;
-	private String carPlate;
 	private Fecha dStart;
 	private Fecha dEnd;
 	private int numDays;
@@ -30,6 +30,13 @@ public abstract class Cars {
 		this.setNumDays();
 		this.setPrice();
 		this.setDisc();
+	}
+
+	public Cars() { // Contructor vacio
+	}
+
+	public Cars (String carPlate) { // Constructor Clave Primaria
+		this.carPlate = carPlate;
 	}
 
 	public String getBrand() {
@@ -143,6 +150,18 @@ public abstract class Cars {
 			this.disc = 0.1;
 	}
 
+	public int compareTo(Cars sendedCar) {
+		if (this.getCarPlate().compareTo(sendedCar.getCarPlate()) > 0)
+			return 1;
+		if (this.getCarPlate().compareTo(sendedCar.getCarPlate()) < 0)
+			return -1;
+		return 0;
+	}
+
+	public boolean equals(Object sendedCar) {
+		return getCarPlate().equals(((Cars)sendedCar).getCarPlate());
+	}
+	
 	@Override
 	public abstract String toString() ;
 	

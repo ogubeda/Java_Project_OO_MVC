@@ -1,7 +1,8 @@
 package Modules.Cars.Utils;
 
 import javax.swing.JOptionPane;
-import Utils.Menu;
+
+import Modules.Order.Singleton;
 public class functionsDataCars {
 	//////Creación de las funciones para crear los atributos generales
 	/////
@@ -114,22 +115,22 @@ public class functionsDataCars {
 		do {
 			carPlate = functions.verString(message, title);
 			if (functionsRegularExp.verRegExCarPlate(carPlate) == true) {
-				for (int i = 0; i < Menu.electricList.size(); i++) {
-					if (carPlate.equals(Menu.electricList.get(i).getCarPlate()))
+				for (int i = 0; i < Singleton.electricList.size(); i++) {
+					if (carPlate.equals(Singleton.electricList.get(i).getCarPlate()))
 						repeatedPlateE = true;
 					else
 						repeatedPlateE = false;
 				}// end_for
 				//////
-				for (int i = 0; i < Menu.hybridList.size(); i++) {
-					if (carPlate.equals(Menu.hybridList.get(i).getCarPlate()))
+				for (int i = 0; i < Singleton.hybridList.size(); i++) {
+					if (carPlate.equals(Singleton.hybridList.get(i).getCarPlate()))
 						repeatedPlateH = true;
 					else
 						repeatedPlateH = false;
 				}// end_for
 				//////
-				for (int i = 0; i < Menu.combustionList.size(); i++) {
-					if (carPlate.equals(Menu.combustionList.get(i).getCarPlate()))
+				for (int i = 0; i < Singleton.combustionList.size(); i++) {
+					if (carPlate.equals(Singleton.combustionList.get(i).getCarPlate()))
 						repeatedPlateC = true;
 					else
 						repeatedPlateC = false;

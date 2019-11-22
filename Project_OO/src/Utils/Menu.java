@@ -1,15 +1,9 @@
 package Utils;
-import Modules.Cars.Classes.*;
 
-import java.util.ArrayList;
 import Modules.Cars.Utils.*;
 
 public class Menu {
 	//////
-	public static ArrayList<Electric> electricList = new ArrayList<Electric>();
-	public static ArrayList<Hybrid> hybridList = new ArrayList<Hybrid>();
-	public static ArrayList<Combustion> combustionList = new ArrayList<Combustion>();
-
 	public static void main(String[] args) {
 		String[] options = {"Electric", "Hybrid", "Combustion", "Exit"};
 		int selection = 0;
