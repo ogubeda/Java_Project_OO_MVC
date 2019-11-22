@@ -160,6 +160,7 @@ public abstract class Cars implements Comparable<Cars> {
 	}
 
 	public boolean equals(Object sendedCar) {
+		//////
 		return getCarPlate().equals(((Cars)sendedCar).getCarPlate());
 	}
 	
