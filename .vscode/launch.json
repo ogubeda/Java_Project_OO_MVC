@@ -5,6 +5,13 @@
             "name": "CodeLens (Launch) - test",
             "request": "launch",
             "mainClass": "Utils.Test.test",
+            "projectName": "Project_OO_a22e6e2f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - test",
+            "request": "launch",
+            "mainClass": "Utils.Test.test",
             "projectName": "Project_OO-1_5ba113b6"
         },
         {

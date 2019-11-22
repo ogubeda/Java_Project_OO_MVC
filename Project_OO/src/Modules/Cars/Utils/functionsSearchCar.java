@@ -18,13 +18,15 @@ public class functionsSearchCar {
             selectFilter = functionsMenu.buttonMenu(optionsElectric, "Choose an option.", "Choose a filter");
             switch(selectFilter) {
                 case 0:
-                    for (int i = 0; i < engineList.size(); i++) {
+                    /*for (int i = 0; i < engineList.size(); i++) {
                         modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
                         posList.add(i);
                     }// end_for
                     String[] modelButtons = modelList.toArray(new String[0]);
                     select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select");
                     returnedValue = posList.get(select);
+                    */
+                    select = filterCars.filterAllElectric(engineList);
                     resume = true;
                     break;
                     //////
