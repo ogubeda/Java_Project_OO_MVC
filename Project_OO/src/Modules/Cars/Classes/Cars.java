@@ -151,6 +151,7 @@ public abstract class Cars implements Comparable<Cars> {
 	}
 
 	public int compareTo(Cars sendedCar) {
+		//////
 		if (this.getCarPlate().compareTo(sendedCar.getCarPlate()) > 0)
 			return 1;
 		if (this.getCarPlate().compareTo(sendedCar.getCarPlate()) < 0)
