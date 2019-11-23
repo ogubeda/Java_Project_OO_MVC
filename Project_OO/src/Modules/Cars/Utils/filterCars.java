@@ -43,7 +43,7 @@ public class filterCars {
                     modelsBox.removeAllItems();
                     posList.clear();
                     for (int i = 0; i < engineList.size(); i++) {
-                        if (engineList.get(i).getBrand().equals(text.getText())) {
+                        if (compareDataE(text.getText(), engineList.get(i))) {
                             modelsBox.addItem(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
                             posList.add(i);
                         }
@@ -54,6 +54,8 @@ public class filterCars {
                                 posList.add(i);
                         }// end_for
                     }
+                    if (modelsBox.getItemCount() == 0)
+                        modelsBox.addItem("No Matches");
                 }
             });
         panel.add(label);
@@ -62,12 +64,37 @@ public class filterCars {
         frame.add(panel);
         //frame.setVisible(true);
         select = JOptionPane.showOptionDialog(frame.getContentPane(), panel, "Hio", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-        returnedValue = posList.get(select);
-        
+        if ((select == 0) && (modelsBox.getSelectedItem().equals("No Matches")))
+            returnedValue = -2;
+        else if (select == 0)
+            returnedValue = posList.get(modelsBox.getSelectedIndex());
+        else
+            returnedValue = -1;
         //////
         return returnedValue;
     }// end_filterAll
     //////
     /////
+
+    public static boolean compareDataE(String sendedText, Cars sendedCar) {
+        //////
+        boolean check = false;
+        int count = 0;
+        //////
+        /////
+        count = sendedCar.getBrand().length();
+        for (int i = 0; i < sendedText.length(); i++) {
+                if (sendedText.length() > count)
+                    check = false;
+                if (sendedText.length() <= sendedCar.getBrand().length()) {
+                    if (sendedText.toLowerCase().charAt(i) == sendedCar.getBrand().toLowerCase().charAt(i))
+                        check = true;
+                    else
+                        check = false;
+                }
+        }
+        //////
+        return check;
+    }// end_compareData
 
 }// end_filterCars

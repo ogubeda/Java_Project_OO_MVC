@@ -164,7 +164,6 @@ public abstract class Cars implements Comparable<Cars> {
 		return getCarPlate().equals(((Cars)sendedCar).getCarPlate());
 	}
 	
-	@Override
 	public abstract String toString() ;
 	
 }// end_class_Cars

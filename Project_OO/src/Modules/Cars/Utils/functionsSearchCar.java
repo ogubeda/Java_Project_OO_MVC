@@ -7,62 +7,47 @@ import Modules.Cars.Classes.*;
 public class functionsSearchCar {
     //////
     public static int searchCarElectric(ArrayList<Electric> engineList) { 
-        ArrayList<Integer> posList = new ArrayList<Integer>();
-        ArrayList<String> modelList = new ArrayList<String>();
         int select = 0, selectFilter = 0,returnedValue = 0;
-        boolean resume = false, exit = false;
+        boolean resume = false, finded = false;
 		String test = "";
-		String[] optionsElectric = {"Show All", "Search Car Plate", "Back"};
+        String[] optionsElectric = {"Show All", "Search Car Plate", "Back"};
         //////
         do {
             selectFilter = functionsMenu.buttonMenu(optionsElectric, "Choose an option.", "Choose a filter");
             switch(selectFilter) {
                 case 0:
-                    /*for (int i = 0; i < engineList.size(); i++) {
-                        modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                        posList.add(i);
-                    }// end_for
-                    String[] modelButtons = modelList.toArray(new String[0]);
-                    select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select");
-                    returnedValue = posList.get(select);
-                    */
                     select = filterCars.filterAllElectric(engineList);
-                    resume = true;
                     break;
                     //////
                 case 1:
                     test = functionsDataCars.createCarPlate("Introduce the Plate of the Car.", "Search Car Plate");
+                    //checkCarPlate = new Electric(test);
                     for (int i = 0; i < engineList.size(); i++) {
-                        if (test.equals(Singleton.electricList.get(i).getBrand())) {
-                            modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                            posList.add(i);
+                        if (test.equals(engineList.get(i).getCarPlate())) {
+                            select = i;
+                            finded = true;
                         }// end_if
-                    }// end_for
+                    }//end_for
+                    //////
+                    if (finded = false)
+                        select = -2;
                     break;
                     //////
                 default:
-                    exit = true;
+                    select = -1;
                     break;
                     //////
             }// end_switch
-            if (modelList.size() > 0) {
-                String[] modelButtons = modelList.toArray(new String[0]);
-                select = functionsMenu.comboBoxMenu(modelButtons, "Select the car", "Select");
-                if (select == -1){
-                    resume = false;
-                    modelList.clear();
-                    posList.clear();
-                }else{
-                    returnedValue = posList.get(select);
-                    resume = true;
-                }
-            }else {
-                if (exit == false)
-                    JOptionPane.showMessageDialog(null, "No matches.", "Error", JOptionPane.ERROR_MESSAGE);
-                else {
-                    returnedValue = -1;
-                    resume = true;
-                }
+            if (select >= 0) {
+                returnedValue = select;
+                resume = true;
+            }
+            else if (select == -1) {
+                resume = true;
+                returnedValue = -1;
+            }else if (select == -2){
+                JOptionPane.showMessageDialog(null, "You haven't choosen any Car", "Error", JOptionPane.ERROR_MESSAGE);
+                resume = false;
             }
         }while(resume == false);
         return returnedValue;

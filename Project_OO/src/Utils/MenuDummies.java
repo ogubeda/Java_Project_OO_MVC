@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import Modules.Cars.Classes.*;
 import Modules.Cars.Classes.Singleton;
 import Modules.Cars.Utils.*;
+import Modules.Dummies.generateDummies;
 
-public class Menu {
+public class MenuDummies {
 	//////
 	public static void main(String[] args) {
 		String[] options = {"Electric", "Hybrid", "Combustion", "Exit"};
@@ -15,7 +16,8 @@ public class Menu {
 		Singleton.electricList = new ArrayList<Electric>();
 		Singleton.hybridList = new ArrayList<Hybrid>();
 		Singleton.combustionList = new ArrayList<Combustion>();
-
+        //////
+        generateDummies.generate();
 		//////
 		/////
 		
@@ -44,4 +46,4 @@ public class Menu {
 	//////
 	/////
 	
-}// end_Menu
+}// end_MenuDummies

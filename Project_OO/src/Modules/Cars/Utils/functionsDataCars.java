@@ -114,27 +114,24 @@ public class functionsDataCars {
 		/////
 
 		do {
+			repeatedPlateC = false;
+			repeatedPlateE = false;
+			repeatedPlateH = false;
 			carPlate = functions.verString(message, title);
 			if (functionsRegularExp.verRegExCarPlate(carPlate) == true) {
 				for (int i = 0; i < Singleton.electricList.size(); i++) {
 					if (carPlate.equals(Singleton.electricList.get(i).getCarPlate()))
 						repeatedPlateE = true;
-					else
-						repeatedPlateE = false;
 				}// end_for
 				//////
 				for (int i = 0; i < Singleton.hybridList.size(); i++) {
 					if (carPlate.equals(Singleton.hybridList.get(i).getCarPlate()))
 						repeatedPlateH = true;
-					else
-						repeatedPlateH = false;
 				}// end_for
 				//////
 				for (int i = 0; i < Singleton.combustionList.size(); i++) {
 					if (carPlate.equals(Singleton.combustionList.get(i).getCarPlate()))
 						repeatedPlateC = true;
-					else
-						repeatedPlateC = false;
 				}// end_for
 				//////
 				if (repeatedPlateE == false && repeatedPlateH == false && repeatedPlateC == false)
