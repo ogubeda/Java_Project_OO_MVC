@@ -106,6 +106,40 @@ public class Fecha {
 		}else
 			return false;
 	}// end_verSysDate
+	//////
+	////
+
+	public int compareDate (Fecha sendedDate) {
+		//////
+		Calendar firstDate = null;
+		Calendar secondDate = null;
+		//////
+		/////
+
+		firstDate = sendedDate.stringToCalendar();
+		secondDate = this.stringToCalendar();
+		//////
+		if (firstDate.after(secondDate))
+			return -1;
+		else if (firstDate.before(secondDate))
+			return 1;
+		else
+			return 0;
+	}// end_compareDate
+	//////
+	/////
+
+	public Calendar stringToCalendar() {
+		//////
+		Calendar date = Calendar.getInstance();
+		//////
+		/////
+
+		date.set(this.getYear(), this.getMonth(), this.getDay());
+		return date;
+	}// end_stringToCalendar
+	//////
+	/////
 	
 	public boolean verDate() {
 		//////

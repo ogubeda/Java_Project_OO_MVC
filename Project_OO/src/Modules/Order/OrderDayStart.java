@@ -7,7 +7,7 @@ public class OrderDayStart implements Comparator<Cars> {
     //////
     public int compare (Cars car1, Cars car2) {
         //////
-        return car2.getdStart().compareTo(car1.getdStart());
+        return car2.getdStartDate().compareDate(car1.getdStartDate());
     }// end_compare
     //////
     /////

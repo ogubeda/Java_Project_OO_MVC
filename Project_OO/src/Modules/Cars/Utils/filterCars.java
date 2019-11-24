@@ -79,21 +79,26 @@ public class filterCars {
     public static boolean compareDataE(String sendedText, Cars sendedCar) {
         //////
         boolean check = false;
-        int count = 0;
+        String cadBrand = "", cadModel = "";
         //////
         /////
-        count = sendedCar.getBrand().length();
-        for (int i = 0; i < sendedText.length(); i++) {
-                if (sendedText.length() > count)
-                    check = false;
-                if (sendedText.length() <= sendedCar.getBrand().length()) {
-                    if (sendedText.toLowerCase().charAt(i) == sendedCar.getBrand().toLowerCase().charAt(i))
-                        check = true;
-                    else
-                        check = false;
-                }
+       
+        if (sendedText.length() <= sendedCar.getBrand().length()){
+            for (int i = 0; i < sendedText.length(); i++) {
+                cadBrand = cadBrand + sendedCar.getBrand().toLowerCase().charAt(i);
+            }
         }
+        if (sendedText.length() <= sendedCar.getModel().length()) {
+            for (int i = 0; i < sendedText.length(); i++) {
+                cadModel = cadModel + sendedCar.getModel().toLowerCase().charAt(i);
+            }
+        }
+        if ((sendedText.toLowerCase().equals(cadBrand)) || (sendedText.toLowerCase().equals(cadModel))) {
+            check = true;
+        }else
+            check = false;
         //////
+        
         return check;
     }// end_compareData
 

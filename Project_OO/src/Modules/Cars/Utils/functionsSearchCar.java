@@ -29,7 +29,7 @@ public class functionsSearchCar {
                         }// end_if
                     }//end_for
                     //////
-                    if (finded = false)
+                    if (finded == false)
                         select = -2;
                     break;
                     //////

@@ -8,7 +8,7 @@ public class OrderDayEnd implements Comparator<Cars> {
     //////
     public int compare (Cars car1, Cars car2) {
         //////
-        return car2.getdEnd().compareTo(car1.getdEnd());
+        return car2.getdEndDate().compareDate(car1.getdEndDate());
     }// end_compare
     //////
     /////
