@@ -35,9 +35,9 @@ public class functionsOrder {
             case 2:
                 menuOrderSel = OrderMenu.menuString("Higher to lower", "Lower to higher", "Order Start Day");
                 if (menuOrderSel == 0)
-                    Collections.sort(Singleton.electricList, Collections.reverseOrder(new OrderDayStart()));
-                if (menuOrderSel == 1)
                     Collections.sort(Singleton.electricList, new OrderDayStart());
+                if (menuOrderSel == 1)
+                    Collections.sort(Singleton.electricList, Collections.reverseOrder(new OrderDayStart()));
                 break;
                 //////
             case 3:

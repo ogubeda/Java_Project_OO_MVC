@@ -1,4 +1,4 @@
-package Modules.Dummies;
+package Modules.Cars.Dummies;
 
 import java.util.Random;
 import Classes.Fecha;
@@ -9,7 +9,7 @@ public class generateDummies {
     //////
     private static Random r1 = new Random();
     //////
-    public static void generate () {
+    public static void generate (int range, int type) {
         //////
         String[] brands = {"Tesla", "Ford", "Toyota", "Audi", "BMW"};
         String[] modelsTesla = {"Model 3", "Model X", "Model Y"};
@@ -22,7 +22,7 @@ public class generateDummies {
         int[] seats = {2, 4, 5, 8};
         int[] doors = {3, 5, 7};
         String brand = "", model = "", hybridChoose = "", combChoose = "";
-        int seat = 0, door = 0, typeEngine = 0, battery = 0;
+        int seat = 0, door = 0, typeEngine = type, battery = 0;
         Fecha dateStart = null;
         Electric electricCar = null;
         Hybrid hybridCar = null;
@@ -30,7 +30,7 @@ public class generateDummies {
         //////
         /////
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < range; i++) {
             brand = brands[r1.nextInt(5)];
             if (brand.equals(brands[0]))
                 model = modelsTesla[r1.nextInt(3)];
@@ -44,7 +44,8 @@ public class generateDummies {
                 model = modelsBMW[r1.nextInt(4)];
             seat = seats[r1.nextInt(4)];
             door = doors[r1.nextInt(3)];
-            typeEngine = r1.nextInt(3);
+            if (type == -1)
+                typeEngine = r1.nextInt(3);
             dateStart = generateDateStart();
             if (typeEngine == 0) {
                 battery = r1.nextInt(99);
@@ -106,7 +107,7 @@ public class generateDummies {
             if (Singleton.electricList.isEmpty() && Singleton.hybridList.isEmpty() && Singleton.combustionList.isEmpty())
                 resume = false;
             else {
-                if (functions.verCarPlate(carPlate))
+                if (functions.verCarPlate(carPlate) == 1)
                     resume = false;
             }
         }while (resume == true);

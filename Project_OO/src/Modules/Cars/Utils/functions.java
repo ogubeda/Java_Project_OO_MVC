@@ -138,7 +138,7 @@ public class functions {
 	//////
 	/////
 
-	public static boolean verCarPlate (String carPlate) {
+	public static int verCarPlate (String carPlate) {
 		//////
 		boolean repeatedPlateC = false, repeatedPlateE = false, repeatedPlateH = false;
 		//////
@@ -160,12 +160,12 @@ public class functions {
 					repeatedPlateC = true;
 			}// end_for
 			if (repeatedPlateE == false && repeatedPlateH == false && repeatedPlateC == false)
-				return true;
+				return 1;
 			else
-				return false;
+				return 0;
 		}else {
 			JOptionPane.showMessageDialog(null, "Invalid Car Plate format.", "Error", JOptionPane.ERROR_MESSAGE);
-			return false;
+			return -1;
 		}
 	}//////
 	/////

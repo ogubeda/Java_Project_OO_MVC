@@ -113,7 +113,7 @@ public class functionsDataCars {
 
 		do {
 			carPlate = functions.verString(message, title);
-			if (functions.verCarPlate(carPlate))
+			if (functions.verCarPlate(carPlate) == 1)
 				resume = true;
 			else
 				JOptionPane.showMessageDialog(null, "The Plate of the Car is repeated", "Error", JOptionPane.ERROR_MESSAGE);
