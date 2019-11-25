@@ -20,14 +20,16 @@ public class functionsSearchCar {
                     break;
                     //////
                 case 1:
-                    test = functionsDataCars.createCarPlate("Introduce the Plate of the Car.", "Search Car Plate");
+                    test = functions.verString("Introduce the Plate of the Car.", "Search Car Plate");
                     //checkCarPlate = new Electric(test);
-                    for (int i = 0; i < engineList.size(); i++) {
-                        if (test.equals(engineList.get(i).getCarPlate())) {
-                            select = i;
-                            finded = true;
-                        }// end_if
-                    }//end_for
+                    if (functions.verCarPlate(test) == false) {
+                        for (int i = 0; i < engineList.size(); i++) {
+                            if (test.equals(engineList.get(i).getCarPlate())) {
+                                select = i;
+                                finded = true;
+                            }// end_if
+                        }//end_for
+                    }
                     //////
                     if (finded == false)
                         select = -2;

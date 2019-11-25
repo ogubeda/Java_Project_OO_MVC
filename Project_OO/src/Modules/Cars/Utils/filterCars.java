@@ -79,21 +79,30 @@ public class filterCars {
     public static boolean compareDataE(String sendedText, Cars sendedCar) {
         //////
         boolean check = false;
-        String cadBrand = "", cadModel = "";
+        String cadBrand = "", cadModel = "", cutBrand = "", cutModel = "", date = "";
         //////
         /////
        
-        if (sendedText.length() <= sendedCar.getBrand().length()){
+        cadBrand = sendedCar.getBrand().toLowerCase() + " " + sendedCar.getModel().toLowerCase();
+        cadModel = sendedCar.getModel().toLowerCase() + " " + sendedCar.getBrand().toLowerCase();
+        //////
+        if (sendedText.length() <= cadBrand.length()){ // Búsqueda por marca y modelo
             for (int i = 0; i < sendedText.length(); i++) {
-                cadBrand = cadBrand + sendedCar.getBrand().toLowerCase().charAt(i);
+                cutBrand = cutBrand + cadBrand.charAt(i);
             }
         }
-        if (sendedText.length() <= sendedCar.getModel().length()) {
+        if (sendedText.length() <= cadModel.length()) { // Búsqueda por modelo y marca
             for (int i = 0; i < sendedText.length(); i++) {
-                cadModel = cadModel + sendedCar.getModel().toLowerCase().charAt(i);
+                cutModel = cutModel + cadModel.charAt(i);
             }
         }
-        if ((sendedText.toLowerCase().equals(cadBrand)) || (sendedText.toLowerCase().equals(cadModel))) {
+        if (sendedText.length() <= sendedCar.getdStart().length()) { // Búsqueda por fecha inicio
+            for (int i = 0; i < sendedText.length(); i++) {
+                date = date + sendedCar.getdStart().charAt(i);
+            }
+        }
+
+        if ((sendedText.toLowerCase().equals(cutBrand)) || (sendedText.toLowerCase().equals(cutModel)) || (sendedText.equals(date))) {
             check = true;
         }else
             check = false;

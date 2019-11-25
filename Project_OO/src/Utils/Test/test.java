@@ -1,16 +1,9 @@
 package Utils.Test;
 
-import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 import java.util.ArrayList;
-
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import Modules.Cars.Classes.Singleton;
-import Modules.Cars.Utils.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

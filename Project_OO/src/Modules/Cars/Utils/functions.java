@@ -1,6 +1,7 @@
 package Modules.Cars.Utils;
-import javax.swing.JComboBox;
+
 import javax.swing.JOptionPane;
+import Modules.Cars.Classes.Singleton;
 
 public class functions {
 	public static int ver_int(String message, String title) {
@@ -108,7 +109,7 @@ public class functions {
                 }else 
                 	stop = functionsMenu.exitConf_win("Do you want to exit?", "Exit");
             }catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "No has introducido una cadena valida.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "You haven't introduced a valid chain.", "Error", JOptionPane.ERROR_MESSAGE);
                 stop = false;
             }//end_catch
         }while (stop == false);
@@ -136,54 +137,37 @@ public class functions {
 	}// end_verAge
 	//////
 	/////
-	
-	public static String[] inputBirthday() {
-		//ArrayList<Integer> YearList = new ArrayList<Integer>();
-		int option = 0;
-		boolean validate = false, error = false;
-		String[] birthday = new String[3];
-		String[] options = {"Validate", "Continue", "Exit"};
-		String[] years = functionsMaths.yearGenerator(82, 18);
-		String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-		String[] days = functionsMaths.dayGenerator("");
-		JComboBox<String> monthslist = new JComboBox<String>(months);
-		JComboBox<String> YearBox = new JComboBox<String>(years); 
+
+	public static boolean verCarPlate (String carPlate) {
+		//////
+		boolean repeatedPlateC = false, repeatedPlateE = false, repeatedPlateH = false;
 		//////
 		/////
-		
-		do {
-			JComboBox<String> dayBox = new JComboBox<String>(days);
-			Object[] message = {"Select your year.", YearBox,"Select your month.", monthslist, "Select your day", dayBox};
-			
-			option = JOptionPane.showOptionDialog(null, message, "Birthday", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-				switch (option) {
-					case 0:
-						error = true;
-						days = null;
-						days = functionsMaths.dayGenerator(monthslist.getSelectedItem().toString());
-						break;
-						//////
-					case 1:
-						if (error == true) {
-							birthday[0] = YearBox.getSelectedItem().toString();
-							birthday[1] = monthslist.getSelectedItem().toString();
-							birthday[2] = dayBox.getSelectedItem().toString();
-							validate = true;
-						}else {
-								JOptionPane.showMessageDialog(null, "Validate your month before to continue.", "Error", JOptionPane.ERROR_MESSAGE);
-								error = false;
-						}// end_else
-						break;
-						//////
-					default:
-						validate = functionsMenu.exitConf_win("Do you want to exit?", "Exit");
-						break;
-						//////
-				}// end_switch
-		}while (validate == false);
-		//////
-		return birthday;
-	}// end_verBirthYear
-	//////
+
+		if (functionsRegularExp.verRegExCarPlate(carPlate)) {
+			for (int i = 0; i < Singleton.electricList.size(); i++) {
+				if (carPlate.equals(Singleton.electricList.get(i).getCarPlate()))
+					repeatedPlateE = true;
+			}// end_for
+			//////
+			for (int i = 0; i < Singleton.hybridList.size(); i++) {
+				if (carPlate.equals(Singleton.hybridList.get(i).getCarPlate()))
+					repeatedPlateH = true;
+			}// end_for
+			//////
+			for (int i = 0; i < Singleton.combustionList.size(); i++) {
+				if (carPlate.equals(Singleton.combustionList.get(i).getCarPlate()))
+					repeatedPlateC = true;
+			}// end_for
+			if (repeatedPlateE == false && repeatedPlateH == false && repeatedPlateC == false)
+				return true;
+			else
+				return false;
+		}else {
+			JOptionPane.showMessageDialog(null, "Invalid Car Plate format.", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+	}//////
 	/////
+
 }

@@ -3,6 +3,7 @@ package Modules.Dummies;
 import java.util.Random;
 import Classes.Fecha;
 import Modules.Cars.Classes.*;
+import Modules.Cars.Utils.functions;
 
 public class generateDummies {
     //////
@@ -22,7 +23,7 @@ public class generateDummies {
         int[] doors = {3, 5, 7};
         String brand = "", model = "", hybridChoose = "", combChoose = "";
         int seat = 0, door = 0, typeEngine = 0, battery = 0;
-        Fecha dateStart = generateDateStart();
+        Fecha dateStart = null;
         Electric electricCar = null;
         Hybrid hybridCar = null;
         Combustion combustionCar = null;
@@ -44,6 +45,7 @@ public class generateDummies {
             seat = seats[r1.nextInt(4)];
             door = doors[r1.nextInt(3)];
             typeEngine = r1.nextInt(3);
+            dateStart = generateDateStart();
             if (typeEngine == 0) {
                 battery = r1.nextInt(99);
                 electricCar = new Electric(brand, model, seat, true, door, generateCarPlate(), dateStart, generateDateEnd(dateStart), battery);
@@ -97,30 +99,15 @@ public class generateDummies {
         //////
         String[] charPlate = {"A", "B", "C", "D", "E","F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "Y", "Z"};
         String carPlate = "";
-        boolean resume = false, findedE = false, findedH = false, findedC = false;
+        boolean resume = false;
         do {
-            findedC = false;
-            findedE = false;
-            findedH = false;
             carPlate = Integer.toString(r1.nextInt(9)) + Integer.toString(r1.nextInt(9)) + Integer.toString(r1.nextInt(9)) + Integer.toString(r1.nextInt(9)) +
                 charPlate[r1.nextInt(25)] + charPlate[r1.nextInt(25)] + charPlate[r1.nextInt(25)];
             if (Singleton.electricList.isEmpty() && Singleton.hybridList.isEmpty() && Singleton.combustionList.isEmpty())
                 resume = false;
             else {
-                    for (int i = 0; i < Singleton.electricList.size(); i++) {
-                        if (carPlate.equals(Singleton.electricList.get(i).getCarPlate()))
-                            findedE = true;
-                    }
-                    for (int i = 0; i < Singleton.hybridList.size(); i++) {
-                        if (carPlate.equals(Singleton.hybridList.get(i).getCarPlate()))
-                            findedH = true;
-                    }
-                    for (int i = 0; i < Singleton.combustionList.size(); i++) {
-                        if (carPlate.equals(Singleton.combustionList.get(i).getCarPlate()))
-                            findedC = true;
-                    }
-                    if (findedE || findedH || findedC)
-                        resume = true;
+                if (functions.verCarPlate(carPlate))
+                    resume = false;
             }
         }while (resume == true);
         //////
