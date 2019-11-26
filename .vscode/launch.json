@@ -4,6 +4,13 @@
             "type": "java",
             "name": "CodeLens (Launch) - MenuDummies",
             "request": "launch",
+            "mainClass": "Modules.Cars.Dummies.MenuDummies",
+            "projectName": "Project_OO-2_1003fcfb"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MenuDummies",
+            "request": "launch",
             "mainClass": "Utils.MenuDummies",
             "projectName": "Project_OO-2_1003fcfb"
         },

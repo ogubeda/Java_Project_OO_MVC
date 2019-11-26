@@ -48,7 +48,7 @@ public class MenuSecondDummies {
 							replay = false;
 						else{
 							optSec[0] = "Update other car";
-							returnedInt = pd.updateCar(engine);
+							returnedInt = updateDummies.updateCar(engine);
 							if (returnedInt == -1)
 								replay = false;
 							else

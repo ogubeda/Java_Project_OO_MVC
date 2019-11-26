@@ -8,19 +8,20 @@ import Modules.Cars.Utils.functions;
 public class generateDummies {
     //////
     private static Random r1 = new Random();
+    private static String[] brands = {"Tesla", "Ford", "Toyota", "Audi", "BMW"};
+    private static String[] modelsTesla = {"Model 3", "Model X", "Model Y"};
+    private static String[] modelsFord = {"Fiesta", "Focus", "Mustang"};
+    private static String[] modelsToyota = {"Corolla", "Auris", "GT 86"};
+    private static String[] modelsAudi = {"A1", "A3", "A4", "A5"};
+    private static String[] modelsBMW = {"Serie 1", "Serie 2", "Serie 3", "Serie 4"};
+    private static String[] typeHybrid = {"Electric/Diesel", "Electric/Petrol", "Hydrogen/Diesel", "Hydrogen/Petorl"};
+    private static String[] typeComb = {"Petrol", "Diesel", "Natural Gas"};
+    private static int[] seats = {2, 4, 5, 8};
+    private static int[] doors = {3, 5, 7};
     //////
     public static void generate (int range, int type) {
         //////
-        String[] brands = {"Tesla", "Ford", "Toyota", "Audi", "BMW"};
-        String[] modelsTesla = {"Model 3", "Model X", "Model Y"};
-        String[] modelsFord = {"Fiesta", "Focus", "Mustang"};
-        String[] modelsToyota = {"Corolla", "Auris", "GT 86"};
-        String[] modelsAudi = {"A1", "A3", "A4", "A5"};
-        String[] modelsBMW = {"Serie 1", "Serie 2", "Serie 3", "Serie 4"};
-        String[] typeHybrid = {"Electric/Diesel", "Electric/Petrol", "Hydrogen/Diesel", "Hydrogen/Petorl"};
-        String[] typeComb = {"Petrol", "Diesel", "Natural Gas"};
-        int[] seats = {2, 4, 5, 8};
-        int[] doors = {3, 5, 7};
+        
         String brand = "", model = "", hybridChoose = "", combChoose = "";
         int seat = 0, door = 0, typeEngine = type, battery = 0;
         Fecha dateStart = null;
@@ -31,38 +32,112 @@ public class generateDummies {
         /////
 
         for (int i = 0; i < range; i++) {
-            brand = brands[r1.nextInt(5)];
-            if (brand.equals(brands[0]))
-                model = modelsTesla[r1.nextInt(3)];
-            else if (brand.equals(brands[1]))
-                model = modelsFord[r1.nextInt(3)];
-            else if (brand.equals(brands[2]))
-                model = modelsToyota[r1.nextInt(3)];
-            else if (brand.equals(brands[3]))
-                model = modelsAudi[r1.nextInt(4)];
-            else if (brand.equals(brands[4]))
-                model = modelsBMW[r1.nextInt(4)];
-            seat = seats[r1.nextInt(4)];
-            door = doors[r1.nextInt(3)];
+            brand = generateBrand();
+            model = generateModel(brand);
+            seat = generateSeats();
+            door = generateDoors();
+            dateStart = generateDateStart();
             if (type == -1)
                 typeEngine = r1.nextInt(3);
-            dateStart = generateDateStart();
             if (typeEngine == 0) {
-                battery = r1.nextInt(99);
-                electricCar = new Electric(brand, model, seat, true, door, generateCarPlate(), dateStart, generateDateEnd(dateStart), battery);
+                battery = generateBattery();
+                electricCar = new Electric(brand, model, seat, generateParkingHelp(), door, generateCarPlate(), dateStart, generateDateEnd(dateStart), battery);
                 Singleton.electricList.add(electricCar);
             }else if (typeEngine == 1) {
-                hybridChoose = typeHybrid[r1.nextInt(4)];
-                hybridCar = new Hybrid(brand, model, seat, true, door, generateCarPlate(), dateStart, generateDateEnd(dateStart), hybridChoose);
+                hybridChoose = generateTypeHyb();
+                hybridCar = new Hybrid(brand, model, seat, generateParkingHelp(), door, generateCarPlate(), dateStart, generateDateEnd(dateStart), hybridChoose);
                 Singleton.hybridList.add(hybridCar);
-            }else if (typeEngine == 2)
-                combChoose = typeComb[r1.nextInt(3)];
-                combustionCar = new Combustion(brand, model, seat, true, door, generateCarPlate(), dateStart, generateDateEnd(dateStart), combChoose);
+            }else if (typeEngine == 2) {
+                combChoose = generateTypeComb();
+                combustionCar = new Combustion(brand, model, seat, generateParkingHelp(), door, generateCarPlate(), dateStart, generateDateEnd(dateStart), combChoose);
                 Singleton.combustionList.add(combustionCar);
+            }
             }// end_for
     }// end_generate
+    //////
+    /////
 
-    private static Fecha generateDateStart() {
+    public static String generateBrand() {
+        //////
+        return brands[r1.nextInt(brands.length)];
+    }// end_generateBrand
+    //////
+    /////
+
+    public static String generateModel(String brand) {
+        //////
+        String model = "";
+        //////
+        /////
+
+        if (brand.equals(brands[0]))
+            model = modelsTesla[r1.nextInt(modelsTesla.length)];
+        else if (brand.equals(brands[1]))
+            model = modelsFord[r1.nextInt(modelsFord.length)];
+        else if (brand.equals(brands[2]))
+            model = modelsToyota[r1.nextInt(modelsToyota.length)];
+        else if (brand.equals(brands[3]))
+            model = modelsAudi[r1.nextInt(modelsAudi.length)];
+        else if (brand.equals(brands[4]))
+            model = modelsBMW[r1.nextInt(modelsBMW.length)];
+        //////
+        return model;
+    }// end_generateModel
+    //////
+    /////
+
+    public static int generateSeats() {
+        //////
+        return seats[r1.nextInt(seats.length)];
+    }// end_generateSeats
+    //////
+    /////
+
+    public static boolean generateParkingHelp() {
+        //////
+        int select = 0;
+        //////
+        /////
+
+        select = r1.nextInt(2);
+        if (select == 0)
+            return false;
+        else
+            return true;
+    }// end_generateParkingHelp
+    //////
+    /////
+
+    public static int generateDoors() {
+        //////
+        return doors[r1.nextInt(doors.length)];
+    }// end_generateDoors
+    //////
+    /////
+
+    public static int generateBattery() {
+        //////
+        return r1.nextInt((99 - 66) + 66);
+
+    }// end_generateBattery
+    //////
+    /////
+
+    public static String generateTypeHyb() {
+        //////
+        return typeHybrid[r1.nextInt(typeHybrid.length)];
+    }// end_generateTypeHyb
+    //////
+    /////
+
+    public static String generateTypeComb() {
+        //////
+        return typeComb[r1.nextInt(typeComb.length)];
+    }// end_generateTypeComb
+    //////
+    /////
+
+    public static Fecha generateDateStart() {
         //////
         Fecha returnDate = null;
         boolean resume = false;
@@ -79,7 +154,24 @@ public class generateDummies {
     //////
     /////
 
-    private static Fecha generateDateEnd(Fecha dateStart) {
+    public static Fecha modifyDateStart(Fecha dateEnd) {
+        //////
+        Fecha returnDate = null;
+        boolean resume = false;
+        //////
+        /////
+        do {
+            returnDate = new Fecha (Integer.toString(r1.nextInt(2022 - 2020) + 2020) + "/" + (Integer.toString(r1.nextInt(12 - 1) + 1)) + "/" + (Integer.toString(r1.nextInt(31 - 1) + 1)));
+            if ((returnDate.verDate()) && (returnDate.subtractDates(dateEnd) < 0))
+                resume = true;
+        }while (resume == false);
+        //////
+        return returnDate;
+    }// end_modifyDateStart
+    //////
+    /////
+
+    public static Fecha generateDateEnd(Fecha dateStart) {
         //////
         Fecha returnDate = null;
         boolean resume = false;
@@ -96,7 +188,7 @@ public class generateDummies {
     //////
     /////
 
-    private static String generateCarPlate() {
+    public static String generateCarPlate() {
         //////
         String[] charPlate = {"A", "B", "C", "D", "E","F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "Y", "Z"};
         String carPlate = "";
