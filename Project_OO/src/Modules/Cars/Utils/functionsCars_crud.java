@@ -92,50 +92,54 @@ public class functionsCars_crud {
 		
 		if (engine == 0) {
 			select = functionsSearchCar.searchCarElectric(Singleton.electricList);
-			selectButton = functionsMenu.buttonMenu(optionsElectric, "Choose an option to edit.", "Edit");
-			//////
-			switch (selectButton) {
-				case 0:
-					Singleton.electricList.get(select).setBrand(functionsDataCars.createBrand("Introduce the new Brand of the car.", "Introduce the Brand"));
-					break;
-					//////
-				case 1:
-					Singleton.electricList.get(select).setModel(functionsDataCars.createModel("Introduce the new Model of the car.", "Introduce the Model"));
-					break;
-					//////
-				case 2:
-					Singleton.electricList.get(select).setSeats(functionsDataCars.createSeats("Introduce  the new quantity of Seats of the car.", "Introduce the Seats"));
-					break;
-					//////
-				case 3:
-					Singleton.electricList.get(select).setParkinghelp(functionsDataCars.createParkingHelp("Choose the new option", "Choose the Parking Help"));
-					break;
-					//////
-				case 4:
-					Singleton.electricList.get(select).setDoors(functionsDataCars.createDoors("Introduce the new quantity of Doors of the car.", "Introduce the Doors"));
-					break;
-					//////
-				case 5:
-					Singleton.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
-					break;
-					//////
-				case 6:
-					Singleton.electricList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Singleton.electricList.get(select).getdEndDate()));
-					break;
-					//////
-				case 7:
-					Singleton.electricList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Singleton.electricList.get(select).getdStartDate()));
-					break;
-					//////
-				case 8:
-					Singleton.electricList.get(select).setbattery(functionsDataCars.createbattery("Introduce the new capacity for the battery.", "Introduce the battery"));
-					break;
-					//////
-				default:
-					returnedValue = -1;
-					break;
-					//////
-			}// end_switch
+			if (select == -1)
+				returnedValue = -1;
+			else {
+				selectButton = functionsMenu.buttonMenu(optionsElectric, "Choose an option to edit.", "Edit");
+				//////
+				switch (selectButton) {
+					case 0:
+						Singleton.electricList.get(select).setBrand(functionsDataCars.createBrand("Introduce the new Brand of the car.", "Introduce the Brand"));
+						break;
+						//////
+					case 1:
+						Singleton.electricList.get(select).setModel(functionsDataCars.createModel("Introduce the new Model of the car.", "Introduce the Model"));
+						break;
+						//////
+					case 2:
+						Singleton.electricList.get(select).setSeats(functionsDataCars.createSeats("Introduce  the new quantity of Seats of the car.", "Introduce the Seats"));
+						break;
+						//////
+					case 3:
+						Singleton.electricList.get(select).setParkinghelp(functionsDataCars.createParkingHelp("Choose the new option", "Choose the Parking Help"));
+						break;
+						//////
+					case 4:
+						Singleton.electricList.get(select).setDoors(functionsDataCars.createDoors("Introduce the new quantity of Doors of the car.", "Introduce the Doors"));
+						break;
+						//////
+					case 5:
+						Singleton.electricList.get(select).setCarPlate(functionsDataCars.createCarPlate("Introduce the new Plate of the Car.", "Introduce the Car Plate"));
+						break;
+						//////
+					case 6:
+						Singleton.electricList.get(select).setdStart(functionsDate_crud.modifySDate("Introduce the new Start Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the Start Day", Singleton.electricList.get(select).getdEndDate()));
+						break;
+						//////
+					case 7:
+						Singleton.electricList.get(select).setdEnd(functionsDate_crud.createEDate("Introduce the new End Day for the renting.\nFormat: yyyy/mm/dd", "Introduce the End Day", Singleton.electricList.get(select).getdStartDate()));
+						break;
+						//////
+					case 8:
+						Singleton.electricList.get(select).setbattery(functionsDataCars.createbattery("Introduce the new capacity for the battery.", "Introduce the battery"));
+						break;
+						//////
+					default:
+						returnedValue = -1;
+						break;
+						//////
+				}// end_switch
+			}
 		}else if (engine == 1) {
 			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList);
 			if (select == -1)
@@ -188,8 +192,11 @@ public class functionsCars_crud {
 				}// end_else
 		}else if (engine == 2) {
 			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList);
-			selectButton = functionsMenu.buttonMenu(optionsCombustion, "Choose an option to edit.", "Edit");
-		//////
+			if (select == -1)
+				returnedValue = -1;
+			else {
+				selectButton = functionsMenu.buttonMenu(optionsCombustion, "Choose an option to edit.", "Edit");
+				//////
 					switch (selectButton) {
 						case 0:
 							Singleton.combustionList.get(select).setBrand(functionsDataCars.createBrand("Introduce the new Brand of the car.", "Introduce the Brand"));
@@ -236,6 +243,7 @@ public class functionsCars_crud {
 							break;
 							//////
 					}// end_switch
+				}
 		}// end_else
 		///////
 		return returnedValue;

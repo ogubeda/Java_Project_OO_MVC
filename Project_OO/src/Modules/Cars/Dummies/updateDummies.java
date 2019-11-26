@@ -17,56 +17,59 @@ public class updateDummies {
 		
 		if (engine == 0) {
 			select = functionsSearchCar.searchCarElectric(Singleton.electricList);
-			selectButton = functionsMenu.buttonMenu(optionsElectric, "Choose an option to edit.", "Edit");
-			//////
-			switch (selectButton) {
-				case 0:
-					Singleton.electricList.get(select).setBrand(generateDummies.generateBrand());
-					break;
-					//////
-				case 1:
-					Singleton.electricList.get(select).setModel(generateDummies.generateModel(Singleton.electricList.get(select).getBrand()));
-					break;
-					//////
-				case 2:
-					Singleton.electricList.get(select).setSeats(generateDummies.generateSeats());
-					break;
-					//////
-				case 3:
-					Singleton.electricList.get(select).setParkinghelp(generateDummies.generateParkingHelp());
-					break;
-					//////
-				case 4:
-					Singleton.electricList.get(select).setDoors(generateDummies.generateDoors());
-					break;
-					//////
-				case 5:
-					Singleton.electricList.get(select).setCarPlate(generateDummies.generateCarPlate());
-					break;
-					//////
-				case 6:
-					Singleton.electricList.get(select).setdStart(generateDummies.modifyDateStart(Singleton.electricList.get(select).getdEndDate()));
-					break;
-					//////
-				case 7:
-					Singleton.electricList.get(select).setdEnd(generateDummies.generateDateEnd(Singleton.electricList.get(select).getdStartDate()));
-					break;
-					//////
-				case 8:
-					Singleton.electricList.get(select).setbattery(generateDummies.generateBattery());
-					break;
-					//////
-				default:
-					returnedValue = -1;
-					break;
-					//////
-			}// end_switch
+			if (select >= 0) {
+				selectButton = functionsMenu.buttonMenu(optionsElectric, "Choose an option to edit.", "Edit");
+				//////
+				switch (selectButton) {
+					case 0:
+						Singleton.electricList.get(select).setBrand(generateDummies.generateBrand());
+						break;
+						//////
+					case 1:
+						Singleton.electricList.get(select).setModel(generateDummies.generateModel(Singleton.electricList.get(select).getBrand()));
+						break;
+						//////
+					case 2:
+						Singleton.electricList.get(select).setSeats(generateDummies.generateSeats());
+						break;
+						//////
+					case 3:
+						Singleton.electricList.get(select).setParkinghelp(generateDummies.generateParkingHelp());
+						break;
+						//////
+					case 4:
+						Singleton.electricList.get(select).setDoors(generateDummies.generateDoors());
+						break;
+						//////
+					case 5:
+						Singleton.electricList.get(select).setCarPlate(generateDummies.generateCarPlate());
+						break;
+						//////
+					case 6:
+						Singleton.electricList.get(select).setdStart(generateDummies.modifyDateStart(Singleton.electricList.get(select).getdEndDate()));
+						break;
+						//////
+					case 7:
+						Singleton.electricList.get(select).setdEnd(generateDummies.generateDateEnd(Singleton.electricList.get(select).getdStartDate()));
+						break;
+						//////
+					case 8:
+						Singleton.electricList.get(select).setbattery(generateDummies.generateBattery());
+						break;
+						//////
+					default:
+						returnedValue = -1;
+						break;
+						//////
+				}// end_switch
+			}else
+				returnedValue = -1;
 		}else if (engine == 1) {
 			select = functionsSearchCar.searchCarHybrid(Singleton.hybridList);
 			if (select == -1)
 				returnedValue = -1;
 			else {
-			selectButton = functionsMenu.buttonMenu(optionsHybrid, "Choose an option to edit.", "Edit");
+				selectButton = functionsMenu.buttonMenu(optionsHybrid, "Choose an option to edit.", "Edit");
 		//////
 					switch (selectButton) {
 						case 0:
@@ -113,8 +116,9 @@ public class updateDummies {
 				}// end_else
 		}else if (engine == 2) {
 			select = functionsSearchCar.searchCarCombustion(Singleton.combustionList);
+			if (select >= 0) {
 			selectButton = functionsMenu.buttonMenu(optionsCombustion, "Choose an option to edit.", "Edit");
-		//////
+			//////
 					switch (selectButton) {
 						case 0:
 							Singleton.combustionList.get(select).setBrand(generateDummies.generateBrand());
@@ -157,6 +161,8 @@ public class updateDummies {
 							break;
 							//////
 					}// end_switch
+				}else
+					returnedValue = -1;
 		}// end_else
 		///////
 		return returnedValue;

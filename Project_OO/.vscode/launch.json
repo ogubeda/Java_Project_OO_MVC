@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MenuDummies",
+            "request": "launch",
+            "mainClass": "Modules.Cars.Dummies.MenuDummies",
+            "projectName": "Project_OO_cc65923e"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Menu",
             "request": "launch",
             "mainClass": "Utils.Menu",
