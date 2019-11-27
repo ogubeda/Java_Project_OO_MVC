@@ -21,7 +21,6 @@ public class generateDummies {
     //////
     public static void generate (int range, int type) {
         //////
-        
         String brand = "", model = "", hybridChoose = "", combChoose = "";
         int seat = 0, door = 0, typeEngine = type, battery = 0;
         Fecha dateStart = null;

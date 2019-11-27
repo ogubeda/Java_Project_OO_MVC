@@ -203,7 +203,7 @@ public class filterCars {
     public static boolean compareDataE(String sendedText, Cars sendedCar) {
         //////
         boolean check = false;
-        String cadBrand = "", cadModel = "", cutBrand = "", cutModel = "", date = "";
+        String cadBrand = "", cadModel = "", cutBrand = "", cutModel = "", date = "", dateEnd = "";
         //////
         /////
        
@@ -225,8 +225,13 @@ public class filterCars {
                 date = date + sendedCar.getdStart().charAt(i);
             }
         }
-
-        if ((sendedText.toLowerCase().equals(cutBrand)) || (sendedText.toLowerCase().equals(cutModel)) || (sendedText.equals(date))) {
+        if (sendedText.length() <= sendedCar.getdEnd().length()) {
+            for (int i = 0; i < sendedText.length(); i++) {
+                dateEnd = dateEnd + sendedCar.getdEnd().charAt(i);
+            }
+        }
+        if ((sendedText.toLowerCase().equals(cutBrand)) || (sendedText.toLowerCase().equals(cutModel)) || 
+            (sendedText.equals(date)) || (sendedText.equals(dateEnd))) {
             check = true;
         }else
             check = false;
