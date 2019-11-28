@@ -16,6 +16,10 @@ public class MenuDummies {
 		Singleton.electricList = new ArrayList<Electric>();
 		Singleton.hybridList = new ArrayList<Hybrid>();
 		Singleton.combustionList = new ArrayList<Combustion>();
+		Singleton.allCars = new ArrayList<ArrayList<?>>();
+		Singleton.allCars.add(Singleton.electricList);
+		Singleton.allCars.add(Singleton.hybridList);
+		Singleton.allCars.add(Singleton.combustionList);
 		//////
 		/////
 		range = functions.ver_int("How much dummies you want to generate?", "Generate Dummies");

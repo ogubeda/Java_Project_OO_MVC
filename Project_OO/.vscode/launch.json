@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MainLaunch",
+            "request": "launch",
+            "mainClass": "Utils.MainLaunch",
+            "projectName": "Project_OO_cc65923e"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - testMaxDummies",
             "request": "launch",
             "mainClass": "Utils.Test.testMaxDummies",
