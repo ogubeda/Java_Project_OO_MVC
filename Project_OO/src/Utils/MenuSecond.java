@@ -3,10 +3,12 @@ package Utils;
 import javax.swing.JOptionPane;
 
 import Modules.Cars.Classes.Singleton;
+import Modules.Cars.Dummies.generateDummies;
+import Modules.Cars.Dummies.updateDummies;
 import Modules.Cars.Utils.*;
 public class MenuSecond {
 	//////
-	public static void menuSecondary(int engine) {
+	public static void menuSecondary(int engine, boolean modeDum) {
 		String[] options = {"Create", "Read", "Update", "Remove", "Order","Back"};
 		Object[] optSec = {"", "Back", "Exit"};
 		int selection = 0, returnedInt = 0;
@@ -21,8 +23,12 @@ public class MenuSecond {
 			switch (selection) {
 				case 0:
 					do {
+						if (modeDum) 
+							generateDummies.generate(1, engine);
+						else
+							pd.createCar(engine);
+						//////
 						optSec[0] = "Create other car";
-						pd.createCar(engine);
 						replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Create Car");
 					}while (replay == true);
 					break;
@@ -34,6 +40,7 @@ public class MenuSecond {
 						else {
 							optSec[0] = "Search other car";
 							returnedString = pd.readCar(engine);
+							//////
 							if (returnedString == null)
 								replay = false;
 							else
@@ -47,8 +54,12 @@ public class MenuSecond {
 						if (checkCars(engine))
 							replay = false;
 						else{
+							if (modeDum)
+								updateDummies.updateCar(engine);
+							else
+								returnedInt = pd.updateCar(engine);
+							//////
 							optSec[0] = "Update other car";
-							returnedInt = pd.updateCar(engine);
 							if (returnedInt == -1)
 								replay = false;
 							else

@@ -10,6 +10,7 @@ public abstract class Users {
     private Fecha registerDate;
     //////
     public Users (String username, String password, String email) {
+        super();
         this.username = username;
         this.password = password;
         this.email = email;
