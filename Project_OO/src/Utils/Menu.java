@@ -5,23 +5,22 @@ import java.util.ArrayList;
 
 import Modules.Cars.Classes.*;
 import Modules.Cars.Classes.Singleton;
-import Modules.Cars.Dummies.generateDummies;
 import Modules.Cars.Utils.*;
+import Modules.Users.Utils.functionsLogIn;
+import Modules.Users.Classes.*;
 
 
 public class Menu {
 	//////
-	public static void main(String[] args) {
-		String[] options = {"Electric", "Hybrid", "Combustion", "Dummies Mode","Register", "Log In","Exit"};
-		int selection = 0, rangeDum = 0;
+	public static void run() {
+		String[] options = {"Electric", "Hybrid", "Combustion","Log In", "Register","Exit"};
+		int selection = 0;
 		boolean stop = false, modeDum = false;
-		Singleton.electricList = new ArrayList<Electric>();
-		Singleton.hybridList = new ArrayList<Hybrid>();
-		Singleton.combustionList = new ArrayList<Combustion>();
 		//////
 		/////
 	
-		//////
+		Admin test = new Admin("oscar","1111", "kkk");
+		SingletonUsers.adminList.add(test);
 		do {
 			selection = functionsMenu.buttonMenu(options, "Choose a type of car.", "Pick an option");
 			switch (selection) {
@@ -38,15 +37,7 @@ public class Menu {
 					break;
 					//////
 				case 3:
-					if (modeDum == false) {
-						rangeDum = functions.ver_int("How much Dummies you want to generate?", "Generate Dummies");
-						generateDummies.generate(rangeDum, -1);
-						modeDum = true;
-						options[3] = "Disable Dummies";
-					}else {
-						modeDum = false;
-						options[3] = "Dummies Mode";
-					}
+					functionsLogIn.LogIn();
 					break;
 					//////
 				default:
@@ -59,4 +50,13 @@ public class Menu {
 	//////
 	/////
 	
+	public static void main(String[] args) {
+		Singleton.electricList = new ArrayList<Electric>();
+		Singleton.hybridList = new ArrayList<Hybrid>();
+		Singleton.combustionList = new ArrayList<Combustion>();
+		SingletonUsers.genericList = new ArrayList<Generic>();
+		SingletonUsers.VIPList = new ArrayList<VIP>();
+		SingletonUsers.adminList = new ArrayList<Admin>();
+		run();
+	}// end_main
 }// end_Menu

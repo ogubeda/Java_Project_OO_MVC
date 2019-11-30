@@ -109,7 +109,7 @@ public class Fecha {
 	//////
 	////
 
-	public Fecha generateSysDate () {
+	public static Fecha generateSysDate () {
 		//////
 		String sysDate = "";
 		//////

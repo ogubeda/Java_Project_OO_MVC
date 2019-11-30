@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - testLogIn",
+            "request": "launch",
+            "mainClass": "Utils.Test.testLogIn",
+            "projectName": "Project_OO-2_1003fcfb"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MenuDummies",
             "request": "launch",
             "mainClass": "Modules.Cars.Dummies.MenuDummies",

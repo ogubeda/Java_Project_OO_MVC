@@ -46,6 +46,6 @@ public abstract class Users {
     }
 
     public void setRegisterDate() {
-        this.registerDate = this.registerDate.generateSysDate();
+        this.registerDate = Fecha.generateSysDate();
     }
 }// end_Users
