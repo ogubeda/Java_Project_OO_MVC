@@ -19,7 +19,7 @@ public class generateDummies {
     private static int[] seats = {2, 4, 5, 8};
     private static int[] doors = {3, 5, 7};
     //////
-    public static void generate (int range, int type) {
+    public static int generate (int type) {
         //////
         String brand = "", model = "", hybridChoose = "", combChoose = "";
         int seat = 0, door = 0, typeEngine = type, battery = 0;
@@ -29,29 +29,31 @@ public class generateDummies {
         Combustion combustionCar = null;
         //////
         /////
-
-        for (int i = 0; i < range; i++) {
-            brand = generateBrand();
-            model = generateModel(brand);
-            seat = generateSeats();
-            door = generateDoors();
-            dateStart = generateDateStart();
-            if (type == -1)
-                typeEngine = r1.nextInt(3);
-            if (typeEngine == 0) {
-                battery = generateBattery();
-                electricCar = new Electric(brand, model, seat, generateParkingHelp(), door, generateCarPlate(), dateStart, generateDateEnd(dateStart), battery);
-                Singleton.electricList.add(electricCar);
-            }else if (typeEngine == 1) {
-                hybridChoose = generateTypeHyb();
-                hybridCar = new Hybrid(brand, model, seat, generateParkingHelp(), door, generateCarPlate(), dateStart, generateDateEnd(dateStart), hybridChoose);
-                Singleton.hybridList.add(hybridCar);
-            }else if (typeEngine == 2) {
-                combChoose = generateTypeComb();
-                combustionCar = new Combustion(brand, model, seat, generateParkingHelp(), door, generateCarPlate(), dateStart, generateDateEnd(dateStart), combChoose);
-                Singleton.combustionList.add(combustionCar);
-            }
-            }// end_for
+        brand = generateBrand();
+        model = generateModel(brand);
+    seat = generateSeats();
+        door = generateDoors();
+        dateStart = generateDateStart();
+        if (type == -1)
+            typeEngine = r1.nextInt(3);
+        if (typeEngine == 0) {
+            battery = generateBattery();
+            electricCar = new Electric(brand, model, seat, generateParkingHelp(), door, generateCarPlate(), dateStart, generateDateEnd(dateStart), battery);
+            Singleton.electricList.add(electricCar);
+            return 1;
+        }else if (typeEngine == 1) {
+            hybridChoose = generateTypeHyb();
+            hybridCar = new Hybrid(brand, model, seat, generateParkingHelp(), door, generateCarPlate(), dateStart, generateDateEnd(dateStart), hybridChoose);
+            Singleton.hybridList.add(hybridCar);
+            return 1;
+        }else if (typeEngine == 2) {
+            combChoose = generateTypeComb();
+            combustionCar = new Combustion(brand, model, seat, generateParkingHelp(), door, generateCarPlate(), dateStart, generateDateEnd(dateStart), combChoose);
+            Singleton.combustionList.add(combustionCar);
+            return 1;
+        }
+        //////
+        return 0;
     }// end_generate
     //////
     /////

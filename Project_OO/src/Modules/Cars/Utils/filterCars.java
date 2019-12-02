@@ -2,10 +2,7 @@ package Modules.Cars.Utils;
 
 import java.util.ArrayList;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,83 +14,28 @@ public class filterCars {
     private static ArrayList<Integer> posList = new ArrayList<Integer>();
     private static ArrayList<String> modelList = new ArrayList<String>();
     //////
-    public static int filterAllElectric(ArrayList<Electric> engineList) {
+    public static int filter(int typeEngine) {
         //////
+        ArrayList<Cars> engineList = new ArrayList<Cars>();
         int select = 0, returnedValue = 0;
         String[] options = {"Continue", "Back"};
-        JPanel panel = new JPanel();
-        JFrame frame = new JFrame("Testing");
-        JLabel label = new JLabel("Introduce the words for seaching: ");
         JTextField text = new JTextField(20);
         //////
         /////
         
-        for (int i = 0; i < engineList.size(); i++) {
-            modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-            posList.add(i);
-        }// end_for
-        JComboBox<String> modelsBox = new JComboBox<String>(modelList.toArray(new String[0]));
-        text.addKeyListener(
-            new KeyListener() {
-                public void keyTyped(KeyEvent e) {
-                }
-                public void keyPressed(KeyEvent e) {
-                }
-                public void keyReleased(KeyEvent e) {
-                    modelsBox.removeAllItems();
-                    posList.clear();
-                    for (int i = 0; i < engineList.size(); i++) {
-                        if (compareDataE(text.getText(), engineList.get(i))) {
-                            modelsBox.addItem(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                            posList.add(i);
-                        }
-                    }// end_for
-                    if (text.getText().equals("")) {
-                        for (int i = 0; i < engineList.size(); i++) {
-                                modelsBox.addItem(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                                posList.add(i);
-                        }// end_for
-                    }
-                    if (modelsBox.getItemCount() == 0)
-                        modelsBox.addItem("No Matches");
-                }
-            });
-        panel.add(label);
-        panel.add(text);
-        panel.add(modelsBox);
-        frame.add(panel);
-        //frame.setVisible(true);
-        select = JOptionPane.showOptionDialog(frame.getContentPane(), panel, "Hio", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-        if ((select == 0) && (modelsBox.getSelectedItem().equals("No Matches")))
-            returnedValue = -2;
-        else if (select == 0)
-            returnedValue = posList.get(modelsBox.getSelectedIndex());
-        else
-            returnedValue = -1;
-        //////
-        posList.clear();
-        modelList.clear();
-        return returnedValue;
-    }// end_filterAll
-    //////
-    /////
+        if (typeEngine == 0)
+            engineList.addAll(Singleton.electricList);
+        if (typeEngine == 1)
+            engineList.addAll(Singleton.hybridList);
+        if (typeEngine == 2)
+            engineList.addAll(Singleton.combustionList);
 
-    public static int filterAllHybrid(ArrayList<Hybrid> engineList) {
-        //////
-        int select = 0, returnedValue = 0;
-        String[] options = {"Continue", "Back"};
-        JPanel panel = new JPanel();
-        JFrame frame = new JFrame("Testing");
-        JLabel label = new JLabel("Introduce the words for seaching: ");
-        JTextField text = new JTextField(20);
-        //////
-        /////
-        
         for (int i = 0; i < engineList.size(); i++) {
             modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
             posList.add(i);
         }// end_for
         JComboBox<String> modelsBox = new JComboBox<String>(modelList.toArray(new String[0]));
+        Object[] bodyPane = {"Introduce the word for searching", text, modelsBox};
         text.addKeyListener(
             new KeyListener() {
                 public void keyTyped(KeyEvent e) {
@@ -119,73 +61,7 @@ public class filterCars {
                         modelsBox.addItem("No Matches");
                 }
             });
-        panel.add(label);
-        panel.add(text);
-        panel.add(modelsBox);
-        frame.add(panel);
-        //frame.setVisible(true);
-        select = JOptionPane.showOptionDialog(frame.getContentPane(), panel, "Hio", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-        if ((select == 0) && (modelsBox.getSelectedItem().equals("No Matches")))
-            returnedValue = -2;
-        else if (select == 0)
-            returnedValue = posList.get(modelsBox.getSelectedIndex());
-        else
-            returnedValue = -1;
-        //////
-        posList.clear();
-        modelList.clear();
-        return returnedValue;
-    }// end_filterAll
-    //////
-    /////
-
-    public static int filterAllCombustion(ArrayList<Combustion> engineList) {
-        //////
-        int select = 0, returnedValue = 0;
-        String[] options = {"Continue", "Back"};
-        JPanel panel = new JPanel();
-        JFrame frame = new JFrame("Testing");
-        JLabel label = new JLabel("Introduce the words for seaching: ");
-        JTextField text = new JTextField(20);
-        //////
-        /////
-        
-        for (int i = 0; i < engineList.size(); i++) {
-            modelList.add(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-            posList.add(i);
-        }// end_for
-        JComboBox<String> modelsBox = new JComboBox<String>(modelList.toArray(new String[0]));
-        text.addKeyListener(
-            new KeyListener() {
-                public void keyTyped(KeyEvent e) {
-                }
-                public void keyPressed(KeyEvent e) {
-                }
-                public void keyReleased(KeyEvent e) {
-                    modelsBox.removeAllItems();
-                    posList.clear();
-                    for (int i = 0; i < engineList.size(); i++) {
-                        if (compareDataE(text.getText(), engineList.get(i))) {
-                            modelsBox.addItem(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                            posList.add(i);
-                        }
-                    }// end_for
-                    if (text.getText().equals("")) {
-                        for (int i = 0; i < engineList.size(); i++) {
-                                modelsBox.addItem(engineList.get(i).getBrand() + " " + engineList.get(i).getModel() + " Plate: " + engineList.get(i).getCarPlate());
-                                posList.add(i);
-                        }// end_for
-                    }
-                    if (modelsBox.getItemCount() == 0)
-                        modelsBox.addItem("No Matches");
-                }
-            });
-        panel.add(label);
-        panel.add(text);
-        panel.add(modelsBox);
-        frame.add(panel);
-        //frame.setVisible(true);
-        select = JOptionPane.showOptionDialog(frame.getContentPane(), panel, "Hio", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        select = JOptionPane.showOptionDialog(null, bodyPane, "Hio", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         if ((select == 0) && (modelsBox.getSelectedItem().equals("No Matches")))
             returnedValue = -2;
         else if (select == 0)

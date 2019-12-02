@@ -13,6 +13,8 @@ public class functionsRegularExp {
 	private static final String patternDNI = "([0-9]{8})([A-Z])";
 	private static final String patternEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final String patternCarPlate = "^([0-9]{4})([A-Z]{3})$";
+	private static final String patternUsername = "^[a-zA-Z0-9_-]{3,16}$";
+	private static final String patternPassword = "^[a-zA-Z0-9_-]{8,16}$";
 	//////
 	public static boolean verRegExData(String data) {
 		//////
@@ -137,4 +139,30 @@ public class functionsRegularExp {
 	//////
 	/////
 	
+	public static boolean verRegExUsername(String data) {
+		//////
+		Pattern pattern = Pattern.compile(patternUsername);
+		Matcher matcher = pattern.matcher(data);
+		//////
+		if (matcher.matches())
+			return true;
+		else
+			return false;
+	}// end_verRegExUsername
+	//////
+	/////
+
+	public static boolean verRegExPassword(String data) {
+		//////
+		Pattern pattern = Pattern.compile(patternPassword);
+		Matcher matcher = pattern.matcher(data);
+		//////
+		if (matcher.matches())
+			return true;
+		else
+			return false;
+	}// end_verRexExPassword
+	//////
+	/////
+
 }// end_functionsRegularExp

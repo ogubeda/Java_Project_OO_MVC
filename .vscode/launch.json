@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - ProgressBar",
+            "request": "launch",
+            "mainClass": "Utils.Test.ProgressBar",
+            "projectName": "Project_OO-2_1003fcfb"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - testProgress",
+            "request": "launch",
+            "mainClass": "Utils.Test.testProgress",
+            "projectName": "Project_OO-2_1003fcfb"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Menu",
+            "request": "launch",
+            "mainClass": "Modules.Utils.Menu",
+            "projectName": "Project_OO-2_1003fcfb"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - testLogIn",
             "request": "launch",
             "mainClass": "Utils.Test.testLogIn",

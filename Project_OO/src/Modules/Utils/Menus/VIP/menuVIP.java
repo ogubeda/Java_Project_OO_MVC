@@ -1,15 +1,14 @@
-package Utils.Menus;
-
+package Modules.Utils.Menus.VIP;
 import Modules.Cars.Utils.functionsMenu;
-import Utils.Menu;
-import Utils.MenuSecond;
+import Modules.Users.Classes.VIP;
+import Modules.Users.Utils.profileUsers;
 
-public class menuGeneric {
+public class menuVIP {
     //////
-    public static void menu() {
-        String[] options = {"Electric", "Hybrid", "Combustion","Log Out","Exit"};
+    public static void menu(VIP user) {
+        String[] options = {"Electric", "Hybrid", "Combustion", "Profile","Log Out","Exit"};
 		int selection = 0;
-		boolean stop = false, modeDum = false, logOut = false;
+		boolean stop = false, modeDum = false;
 		//////
 		/////
 
@@ -17,20 +16,23 @@ public class menuGeneric {
 			selection = functionsMenu.buttonMenu(options, "Choose a type of car.", "Pick an option");
 			switch (selection) {
 				case 0:
-					MenuSecond.menuSecondary(0, modeDum);
+					menuSecondVIP.menuSecondary(0, modeDum);
 					break;
 					//////
 				case 1:
-					MenuSecond.menuSecondary(1, modeDum);
+					menuSecondVIP.menuSecondary(1, modeDum);
 					break;
 					//////
 				case 2:
-					MenuSecond.menuSecondary(2, modeDum);
+					menuSecondVIP.menuSecondary(2, modeDum);
 					break;
 					//////
 				case 3:
+					profileUsers.show(user);
+					break;
+					//////
+				case 4:
                     stop = true;
-                    logOut = true;
 					break;
 					//////
 				default:
@@ -39,8 +41,6 @@ public class menuGeneric {
 					//////
 			}// end_switch
         }while (stop == false);
-        if (logOut == true)
-            Menu.run();
     }// end_menu
-}// end_menuGeneric
+}// end_menuVIP
 //////

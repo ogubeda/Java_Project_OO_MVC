@@ -1,18 +1,19 @@
-package Modules.Cars.Dummies;
+package Modules.Utils.Menus.Admin;
 
 import javax.swing.JOptionPane;
 
-import Modules.Cars.Classes.Singleton;
+import Modules.Cars.Dummies.*;
 import Modules.Cars.Utils.*;
-public class MenuSecondDummies {
-	//////
-	public static void menuSecondary(int engine) {
+import Modules.Utils.checker;
+
+public class menuSecondAdmin {
+    //////
+	public static void menuSecondary(int engine, boolean modeDum) {
 		String[] options = {"Create", "Read", "Update", "Remove", "Order","Back"};
 		Object[] optSec = {"", "Back", "Exit"};
 		int selection = 0, returnedInt = 0;
 		boolean replay = false, stop = false;
 		String returnedString = "";
-		functionsCars_crud pd = new functionsCars_crud();
 		//////
 		/////
 		
@@ -21,19 +22,25 @@ public class MenuSecondDummies {
 			switch (selection) {
 				case 0:
 					do {
+						if (modeDum) {
+							if (generateDummies.generate(engine) == 1)
+								JOptionPane.showMessageDialog(null, "Car create", "Verify", JOptionPane.INFORMATION_MESSAGE);
+						}else
+							functionsCars_crud.createCar(engine);
+						//////
 						optSec[0] = "Create other car";
-						generateDummies.generate(1, engine);;
 						replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Create Car");
 					}while (replay == true);
 					break;
 					//////
 				case 1:
 					do {
-						if (checkCars(engine))
+						if (checker.checkCars(engine))
 							replay = false;
 						else {
 							optSec[0] = "Search other car";
-							returnedString = pd.readCar(engine);
+							returnedString = functionsCars_crud.readCar(engine);
+							//////
 							if (returnedString == null)
 								replay = false;
 							else
@@ -44,11 +51,15 @@ public class MenuSecondDummies {
 					//////
 				case 2:
 					do {
-						if (checkCars(engine))
+						if (checker.checkCars(engine))
 							replay = false;
 						else{
+							if (modeDum)
+								updateDummies.updateCar(engine);
+							else
+								returnedInt = functionsCars_crud.updateCar(engine);
+							//////
 							optSec[0] = "Update other car";
-							returnedInt = updateDummies.updateCar(engine);
 							if (returnedInt == -1)
 								replay = false;
 							else
@@ -59,11 +70,11 @@ public class MenuSecondDummies {
 					//////
 				case 3:
 					do {
-						if (checkCars(engine))
+						if (checker.checkCars(engine))
 							replay = false;
 						else {
 							optSec[0] = "Delete other car";
-							returnedInt = pd.deleteCar(engine);
+							returnedInt = functionsCars_crud.deleteCar(engine);
 							if (returnedInt == -1)
 								replay = false;
 							else
@@ -73,7 +84,7 @@ public class MenuSecondDummies {
 					break;
 					//////
 				case 4:
-					if (checkCars(engine) == false) {
+					if (checker.checkCars(engine) == false) {
 						if (engine == 0)
 							functionsOrder.orderElectric();
 						if (engine == 1)
@@ -93,16 +104,4 @@ public class MenuSecondDummies {
 	//////
 	/////
 
-	public static boolean checkCars(int engine) {
-		//////
-		/////
-
-		if (((Singleton.electricList.isEmpty()) && (engine == 0)) || ((Singleton.hybridList.isEmpty()) && (engine == 1)) || ((Singleton.combustionList.isEmpty()) && (engine == 2))) {
-			JOptionPane.showMessageDialog(null, "There's not created cars.", "Error", JOptionPane.ERROR_MESSAGE);
-			return true;
-		}// end_if
-		return false;
-	}// end_checkCars
-	//////
-	/////
-}// end_MenuSecond
+}

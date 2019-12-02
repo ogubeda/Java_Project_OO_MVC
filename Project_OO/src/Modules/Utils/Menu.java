@@ -1,4 +1,4 @@
-package Utils;
+package Modules.Utils;
 
 import java.util.ArrayList;
 
@@ -18,9 +18,7 @@ public class Menu {
 		boolean stop = false, modeDum = false;
 		//////
 		/////
-	
-		Admin test = new Admin("oscar","1111", "kkk");
-		SingletonUsers.adminList.add(test);
+
 		do {
 			selection = functionsMenu.buttonMenu(options, "Choose a type of car.", "Pick an option");
 			switch (selection) {
@@ -40,6 +38,10 @@ public class Menu {
 					functionsLogIn.LogIn();
 					break;
 					//////
+				case 4:
+					functionsLogIn.Register(0, false);
+					break;
+					//////
 				default:
 					stop = functionsMenu.exitConf_win("Do you want to exit?", "Exit");
 					break;
@@ -57,6 +59,8 @@ public class Menu {
 		SingletonUsers.genericList = new ArrayList<Generic>();
 		SingletonUsers.VIPList = new ArrayList<VIP>();
 		SingletonUsers.adminList = new ArrayList<Admin>();
+		Admin test = new Admin("oscar","1111", "kkk");
+		SingletonUsers.adminList.add(test);
 		run();
 	}// end_main
 }// end_Menu
