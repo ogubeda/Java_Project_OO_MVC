@@ -62,9 +62,9 @@ public class menuCrudUsers {
 						else{
 							user = functionsUsers.selectUser(typeUser);
 							if (modeDum)
-								returnedInt = updateDummiesUsers.update(user);
+								returnedInt = updateDummiesUsers.update(user, true);
 							else {
-								returnedInt = functionsCrudUsers.updateUser(user);
+								returnedInt = functionsCrudUsers.updateUser(user, true);
 								optSec[0] = "Update other User";
 								if (returnedInt == -1)
 									replay = false;

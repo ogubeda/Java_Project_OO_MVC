@@ -34,34 +34,63 @@ public class functionsCrudUsers {
     //////
     /////
 
-    public static int updateUser(Users user) {
+    public static int updateUser(Users user, boolean admin) {
         //////
         String[] options = {"Username", "Password", "Email", "Back"};
+        String[] optionsAd = {"Username", "Password", "Email", "Change Type","Back"};
         int select = 0, returnedValue = 0;
         //////
         /////
 
-        select = functionsMenu.buttonMenu(options, "Choose an option.", "Update User");
-        switch (select) {
-            case 0:
-                user.setUsername("");
-                user.setUsername(functionsLogIn.createUsername());
-                break;
-                //////
-            case 1:
-                user.setPassword(functionsLogIn.createPassword());
-                break;
-                //////
-            case 2:
-                user.setEmail("");
-                user.setEmail(functionsLogIn.createEmail());
-                break;
-                //////
-            default:
-                returnedValue = -1;
-                break;
-                //////
-        }// end_switch
+        if (admin == false){
+            select = functionsMenu.buttonMenu(options, "Choose an option.", "Update User");
+            switch (select) {
+                case 0:
+                    user.setUsername("");
+                    user.setUsername(functionsLogIn.createUsername());
+                    break;
+                    //////
+                case 1:
+                    user.setPassword(functionsLogIn.createPassword());
+                    break;
+                    //////
+                case 2:
+                    user.setEmail("");
+                    user.setEmail(functionsLogIn.createEmail());
+                    break;
+                    //////
+                default:
+                    returnedValue = -1;
+                    break;
+                    //////
+            }// end_switch
+        }else {
+            select = functionsMenu.buttonMenu(optionsAd, "Choose an option.", "Update User");
+            switch (select) {
+                case 0:
+                    user.setUsername("");
+                    user.setUsername(functionsLogIn.createUsername());
+                    break;
+                    //////
+                case 1:
+                    user.setPassword(functionsLogIn.createPassword());
+                    break;
+                    //////
+                case 2:
+                    user.setEmail("");
+                    user.setEmail(functionsLogIn.createEmail());
+                    break;
+                    //////
+                case 3:
+                    returnedValue = functionsLogIn.changeUser(user);
+                    break;
+                    //////
+                default:
+                    returnedValue = -1;
+                    break;
+                    //////
+            }// end_switch
+        }// end_else
         return returnedValue;
     }// end_updateUser
     //////

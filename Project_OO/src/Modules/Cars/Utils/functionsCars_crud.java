@@ -52,34 +52,26 @@ public class functionsCars_crud {
 	
 	public static String readCar(int engine) {
 		//////
-		String cad = "";
 		int select = 0;
 		//////
 		/////
-		
+
+		select = functionsSearchCar.search(engine);
+		//////
 		if (engine == 0) {
-			select = functionsSearchCar.search(engine);
-			if (select == -1)
-				cad = null;
-			else
-				cad = Singleton.electricList.get(select).toString();
+			if (select != -1)
+				return Singleton.electricList.get(select).toString();
 			//////
 		}else if (engine == 1) {
-			select = functionsSearchCar.search(engine);
-			if (select == -1)
-				cad = null;
-			else
-				cad = Singleton.hybridList.get(select).toString();
+			if (select != -1)
+				return Singleton.hybridList.get(select).toString();
 			//////
 		}else if (engine == 2) {
-			select = functionsSearchCar.search(engine);
-			if (select == -1)
-				cad = null;
-			else
-				cad = Singleton.combustionList.get(select).toString();
+			if (select != -1)
+				return Singleton.combustionList.get(select).toString();
 		}// end_else
 		//////
-		return cad;
+		return null;
 	}// end_readCar
 	//////
 	/////
@@ -89,9 +81,9 @@ public class functionsCars_crud {
 		int select = 0, selectButton = 0, returnedValue = 0;
 		//////
 		/////
-		
+
+		select = functionsSearchCar.search(engine);
 		if (engine == 0) {
-			select = functionsSearchCar.search(engine);
 			if (select == -1)
 				returnedValue = -1;
 			else {
@@ -141,7 +133,6 @@ public class functionsCars_crud {
 				}// end_switch
 			}
 		}else if (engine == 1) {
-			select = functionsSearchCar.search(engine);
 			if (select == -1)
 				returnedValue = -1;
 			else {
@@ -191,7 +182,6 @@ public class functionsCars_crud {
 					}// end_switch
 				}// end_else
 		}else if (engine == 2) {
-			select = functionsSearchCar.search(engine);
 			if (select == -1)
 				returnedValue = -1;
 			else {

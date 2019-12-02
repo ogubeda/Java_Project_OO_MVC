@@ -14,7 +14,7 @@ public class profileUsers {
 
         select = functionsMenu.buttonMenu(options, user.toString(), "Profile");
         if (select == 0) {
-            functionsCrudUsers.updateUser(user);
+            functionsCrudUsers.updateUser(user, false);
         }// end_if
     }
 }// end_profileUsers

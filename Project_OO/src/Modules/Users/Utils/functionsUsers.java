@@ -125,5 +125,28 @@ public class functionsUsers {
                 return selectUser;
         }
         return -1;
+    }// end_selectUserPos
+    //////
+    /////
+
+    public static int sendPos(Users user) {
+        //////
+        if (user instanceof Generic) {
+            for (int i = 0; i < SingletonUsers.genericList.size(); i++) {
+                if (SingletonUsers.genericList.get(i).getUsername().equals(user.getUsername()))
+                    return i;
+            }
+        }else if (user instanceof VIP) {
+            for (int i = 0; i < SingletonUsers.VIPList.size(); i++) {
+                if (SingletonUsers.VIPList.get(i).getUsername().equals(user.getUsername()))
+                    return i;
+            }
+        }else if (user instanceof Admin) {
+            for (int i = 0; i < SingletonUsers.adminList.size(); i++) {
+                if (SingletonUsers.adminList.get(i).getUsername().equals(user.getUsername()))
+                    return i;
+            }
+        }
+        return -1;
     }
 }// end_functionsUsers

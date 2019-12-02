@@ -31,7 +31,7 @@ public class chooseDummies {
             generateDummies.generate(-1);
             progresDummies.setValue(progress++);
             try {
-                Thread.sleep(50);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
@@ -42,7 +42,7 @@ public class chooseDummies {
             generateDummiesUsers.generate(-1);
             progresDummies.setValue(progress++);
             try {
-                Thread.sleep(50);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;

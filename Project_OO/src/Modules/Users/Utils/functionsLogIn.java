@@ -149,5 +149,77 @@ public class functionsLogIn {
     }// end_createEmail
     //////
     /////
+
+    public static int changeUser(Users user) {
+        //////
+        if (user instanceof Admin)
+            return changeAdmin(user);
+        if (user instanceof VIP)
+            return changeVIP(user);
+        if (user instanceof Generic)
+            return changeGeneric(user);
+        return -1;
+
+    }// end_changeUser
+    //////
+    /////
+
+    private static int changeAdmin(Users user) {
+        //////
+        String[] options = {"VIP", "Generic", "Back"};
+        int select = 0;
+        //////
+        /////
+        select = functionsMenu.buttonMenu(options, "Choose the type to change", "Change Type Admin");
+        if (select == 0) {
+            SingletonUsers.adminList.remove(functionsUsers.sendPos(user));
+            SingletonUsers.VIPList.add(new VIP(user.getUsername(), user.getPassword(), user.getEmail()));
+        }else if (select == 1) {
+            SingletonUsers.adminList.remove(user);
+            SingletonUsers.genericList.add(new Generic(user.getUsername(), user.getPassword(), user.getEmail()));
+        }
+        return -1;
+    }//
+    //////
+    /////
+
+    private static int changeVIP(Users user) {
+        //////
+        String[] options = {"Admin", "Generic", "Back"};
+        int select = 0;
+        //////
+        /////
+        select = functionsMenu.buttonMenu(options, "Choose the type to change", "Change Type Admin");
+        if (select == 0) {
+            SingletonUsers.VIPList.remove(functionsUsers.sendPos(user));
+            SingletonUsers.adminList.add((new Admin(user.getUsername(), user.getPassword(), user.getEmail())));
+        }else if (select == 1) {
+            SingletonUsers.VIPList.remove(user);
+            SingletonUsers.genericList.add(new Generic(user.getUsername(), user.getPassword(), user.getEmail()));
+        }
+        return -1;
+    }//
+    //////
+    /////
+
+    private static int changeGeneric(Users user) {
+        //////
+        String[] options = {"Admin", "VIP", "Back"};
+        int select = 0;
+        //////
+        /////
+        select = functionsMenu.buttonMenu(options, "Choose the type to change", "Change Type Admin");
+        if (select == 0) {
+            SingletonUsers.genericList.remove(functionsUsers.sendPos(user));
+            SingletonUsers.adminList.add(new Admin(user.getUsername(), user.getPassword(), user.getEmail()));
+        }else if (select == 1) {
+            SingletonUsers.genericList.remove(user);
+            SingletonUsers.VIPList.add(new VIP(user.getUsername(), user.getPassword(), user.getEmail()));
+        }
+        return -1;
+    }//
+    //////
+    /////
+
 }// end_functionsLogIn
 //////
