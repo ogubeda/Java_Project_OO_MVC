@@ -67,22 +67,18 @@ public class generateDummies {
 
     public static String generateModel(String brand) {
         //////
-        String model = "";
-        //////
-        /////
-
         if (brand.equals(brands[0]))
-            model = modelsTesla[r1.nextInt(modelsTesla.length)];
+            return modelsTesla[r1.nextInt(modelsTesla.length)];
         else if (brand.equals(brands[1]))
-            model = modelsFord[r1.nextInt(modelsFord.length)];
+            return modelsFord[r1.nextInt(modelsFord.length)];
         else if (brand.equals(brands[2]))
-            model = modelsToyota[r1.nextInt(modelsToyota.length)];
+            return modelsToyota[r1.nextInt(modelsToyota.length)];
         else if (brand.equals(brands[3]))
-            model = modelsAudi[r1.nextInt(modelsAudi.length)];
+            return modelsAudi[r1.nextInt(modelsAudi.length)];
         else if (brand.equals(brands[4]))
-            model = modelsBMW[r1.nextInt(modelsBMW.length)];
+            return modelsBMW[r1.nextInt(modelsBMW.length)];
         //////
-        return model;
+        return null;
     }// end_generateModel
     //////
     /////
@@ -96,12 +92,7 @@ public class generateDummies {
 
     public static boolean generateParkingHelp() {
         //////
-        int select = 0;
-        //////
-        /////
-
-        select = r1.nextInt(2);
-        if (select == 0)
+        if (r1.nextInt(2) == 0)
             return false;
         else
             return true;

@@ -115,15 +115,12 @@ public class functionsLogIn {
     public static String createPassword() {
         //////
         String password = "";
-        boolean resume = false;
         //////
         /////
 
         do {
             password = functions.verString("Introduce a password.", "Password");
-                if (functionsRegularExp.verRegExPassword(password))
-                    resume = true;
-        }while (resume == false);
+        }while (functionsRegularExp.verRegExPassword(password) == false);
         //////
         return password;
     }// end_createPassword

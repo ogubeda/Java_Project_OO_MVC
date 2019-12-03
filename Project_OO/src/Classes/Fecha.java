@@ -73,16 +73,14 @@ public class Fecha {
 	public int subtractDates(Fecha sendedDate) {
 		//////
 		long diff = 0;
-		int days = 0;
 		try {
 			Date date1 = dateFormat.parse(this.date);
 			Date date2 = dateFormat.parse(sendedDate.dateToString());
 			diff = date1.getTime() - date2.getTime();
-			days = Math.toIntExact(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 		}catch (ParseException e) {
 			System.out.println(e);
 		}
-		return days;
+		return Math.toIntExact(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 	}// end_subtractDates
 	//////
 	/////
@@ -117,9 +115,9 @@ public class Fecha {
 
 		Calendar cal = Calendar.getInstance();
 		sysDate = Integer.toString(cal.get(Calendar.YEAR)) + "/" + Integer.toString((cal.get(Calendar.MONTH)) + 1) + "/" + Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
-		Fecha returnedDate = new Fecha(sysDate);
 		//////
-		return returnedDate;
+		return new Fecha(sysDate);
+
 	}// end_generateSysDate
 	//////
 	/////

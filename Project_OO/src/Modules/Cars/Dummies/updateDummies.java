@@ -14,9 +14,8 @@ public class updateDummies {
 		int select = 0, selectButton = 0, returnedValue = 0;
 		//////
 		/////
-		
+		select = functionsSearchCar.search(engine);
 		if (engine == 0) {
-			select = functionsSearchCar.search(engine);
 			if (select >= 0) {
 				selectButton = functionsMenu.buttonMenu(optionsElectric, "Choose an option to edit.", "Edit");
 				//////
@@ -65,7 +64,6 @@ public class updateDummies {
 			}else
 				returnedValue = -1;
 		}else if (engine == 1) {
-			select = functionsSearchCar.search(engine);
 			if (select == -1)
 				returnedValue = -1;
 			else {
@@ -115,7 +113,6 @@ public class updateDummies {
 					}// end_switch
 				}// end_else
 		}else if (engine == 2) {
-			select = functionsSearchCar.search(engine);
 			if (select >= 0) {
 			selectButton = functionsMenu.buttonMenu(optionsCombustion, "Choose an option to edit.", "Edit");
 			//////

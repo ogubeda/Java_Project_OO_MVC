@@ -3,7 +3,6 @@ package Modules.Cars.Utils;
 import Modules.Cars.Classes.*;
 import Utils.*;
 import Classes.*;
-import javax.swing.JOptionPane;
 
 public class functionsCars_crud {
 	//////
@@ -246,26 +245,18 @@ public class functionsCars_crud {
 		int select = 0;
 		//////
 		/////
-		
+
+		select = functionsSearchCar.search(engine);
 		if (engine == 0) {
-			select = functionsSearchCar.search(engine);
 			if (select == -1)
-				JOptionPane.showMessageDialog(null, "Going back.", "Back", JOptionPane.INFORMATION_MESSAGE);
-			else
 				Singleton.electricList.remove(select).toString();
 			//////
 		}else if (engine == 1) {
-			select = functionsSearchCar.search(engine);
 			if (select == -1)
-				JOptionPane.showMessageDialog(null, "Going back.", "Back", JOptionPane.INFORMATION_MESSAGE);
-			else
 				Singleton.hybridList.remove(select).toString();
 			//////
 		}else if (engine == 2) {
-			select = functionsSearchCar.search(engine);
-			if (select == -1)
-				JOptionPane.showMessageDialog(null, "Going back", "Back", JOptionPane.INFORMATION_MESSAGE);
-			else
+			if (select != -1)
 				Singleton.combustionList.remove(select).toString();
 		}// end_else
 		return select;
