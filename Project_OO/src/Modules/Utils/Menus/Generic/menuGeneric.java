@@ -9,23 +9,23 @@ public class menuGeneric {
     public static void menu(Generic user) {
         String[] options = {"Electric", "Hybrid", "Combustion", "Profile","Log Out","Exit"};
 		int selection = 0;
-		boolean stop = false, modeDum = false;
+		boolean stop = false;
 		//////
 		/////
 
 		do {
-			selection = functionsMenu.buttonMenu(options, "Choose a type of car.", "Pick an option");
+			selection = functionsMenu.buttonMenu(options, "Select an option.", "Pick an option");
 			switch (selection) {
 				case 0:
-					menuSecondGeneric.menuSecondary(0, modeDum);
+					menuSecondGeneric.menuSecondary(0);
 					break;
 					//////
 				case 1:
-					menuSecondGeneric.menuSecondary(1, modeDum);
+					menuSecondGeneric.menuSecondary(1);
 					break;
 					//////
 				case 2:
-					menuSecondGeneric.menuSecondary(2, modeDum);
+					menuSecondGeneric.menuSecondary(2);
 					break;
 					//////
 				case 3:

@@ -1,7 +1,6 @@
 package Modules.Utils.Menus.VIP;
 
 
-import Modules.Cars.Dummies.updateDummies;
 import Modules.Cars.Utils.functionsCars_crud;
 import Modules.Cars.Utils.functionsMenu;
 import Modules.Cars.Utils.functionsOrder;
@@ -9,7 +8,7 @@ import Modules.Utils.checker;
 
 public class menuSecondVIP {
     //////
-    public static void menuSecondary(int engine, boolean modeDum) {
+    public static void menuSecondary(int engine) {
 		String[] options = {"Read", "Update", "Order","Back"};
 		Object[] optSec = {"", "Back", "Exit"};
 		int selection = 0, returnedInt = 0;
@@ -42,10 +41,7 @@ public class menuSecondVIP {
 						if (checker.checkCars(engine))
 							replay = false;
 						else{
-							if (modeDum)
-								updateDummies.updateCar(engine);
-							else
-								returnedInt = functionsCars_crud.updateCar(engine);
+							returnedInt = functionsCars_crud.updateCar(engine);
 							//////
 							optSec[0] = "Update other car";
 							if (returnedInt == -1)

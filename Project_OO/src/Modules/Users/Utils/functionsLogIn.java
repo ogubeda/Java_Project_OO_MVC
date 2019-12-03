@@ -104,7 +104,8 @@ public class functionsLogIn {
             if (functionsRegularExp.verRegExUsername(username)) {
                 if (functionsUsers.findUser(username) == false)
                     resume = true;
-            }
+            }else
+                JOptionPane.showMessageDialog(null, "Invalid username format.", "Error", JOptionPane.ERROR_MESSAGE);
         }while (resume == false);
         //////
         return username;
@@ -115,12 +116,18 @@ public class functionsLogIn {
     public static String createPassword() {
         //////
         String password = "";
+        boolean exit = false;
         //////
         /////
 
         do {
             password = functions.verString("Introduce a password.", "Password");
-        }while (functionsRegularExp.verRegExPassword(password) == false);
+            if (functionsRegularExp.verRegExPassword(password))
+                exit = true;
+            else
+                JOptionPane.showMessageDialog(null, "Invalid password format.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }while (exit == false);
         //////
         return password;
     }// end_createPassword
@@ -139,7 +146,8 @@ public class functionsLogIn {
             if (functionsRegularExp.verRegExEmail(email)) {
                 if (functionsUsers.findEmail(email) == false)
                     resume = true;
-            }
+            }else
+                JOptionPane.showMessageDialog(null, "Invalid email format.", "Erro", JOptionPane.ERROR_MESSAGE);
         }while (resume == false);
         //////
         return email;
@@ -171,9 +179,13 @@ public class functionsLogIn {
         if (select == 0) {
             SingletonUsers.adminList.remove(functionsUsers.sendPos(user));
             SingletonUsers.VIPList.add(new VIP(user.getUsername(), user.getPassword(), user.getEmail()));
+            System.out.println("User moved to VIP.");
+            return 1;
         }else if (select == 1) {
             SingletonUsers.adminList.remove(user);
             SingletonUsers.genericList.add(new Generic(user.getUsername(), user.getPassword(), user.getEmail()));
+            System.out.println("Used moved to Generic.");
+            return 1;
         }
         return -1;
     }//
@@ -190,9 +202,13 @@ public class functionsLogIn {
         if (select == 0) {
             SingletonUsers.VIPList.remove(functionsUsers.sendPos(user));
             SingletonUsers.adminList.add((new Admin(user.getUsername(), user.getPassword(), user.getEmail())));
+            System.out.println("User moved to Admin.");
+            return 1;
         }else if (select == 1) {
             SingletonUsers.VIPList.remove(user);
             SingletonUsers.genericList.add(new Generic(user.getUsername(), user.getPassword(), user.getEmail()));
+            System.out.println("User moved to Generic.");
+            return 1;
         }
         return -1;
     }//
@@ -209,9 +225,13 @@ public class functionsLogIn {
         if (select == 0) {
             SingletonUsers.genericList.remove(functionsUsers.sendPos(user));
             SingletonUsers.adminList.add(new Admin(user.getUsername(), user.getPassword(), user.getEmail()));
+            System.out.println("User moved to Admin.");
+            return 1;
         }else if (select == 1) {
             SingletonUsers.genericList.remove(user);
             SingletonUsers.VIPList.add(new VIP(user.getUsername(), user.getPassword(), user.getEmail()));
+            System.out.println("User moved to VIP.");
+            return 1;
         }
         return -1;
     }//

@@ -27,14 +27,14 @@ public class menuCrudUsers {
 			switch (selection) {
 				case 0:
 					do {
-						if (modeDum)
+						if (modeDum) {
 							if (generateDummiesUsers.generate(typeUser) == 1)
 								JOptionPane.showMessageDialog(null, "User created.", "Verify", JOptionPane.INFORMATION_MESSAGE);
-						else {
+						}else {
 							functionsCrudUsers.createUser(typeUser);
 							//////
 							optSec[0] = "Create other User";
-							replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Create Car");
+							replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Create User");
 						}
 					}while (replay == true);
 					break;
@@ -50,7 +50,7 @@ public class menuCrudUsers {
 							if (returnedString == null)
 								replay = false;
 							else
-								replay = functionsMenu.buttonMenuSec(optSec, returnedString + "\nChoose an option.", "Read Car");
+								replay = functionsMenu.buttonMenuSec(optSec, returnedString + "\nChoose an option.", "Read User");
 						}// end_else
 					}while (replay == true);
 					break;
@@ -61,16 +61,19 @@ public class menuCrudUsers {
 							replay = false;
 						else{
 							user = functionsUsers.selectUser(typeUser);
-							if (modeDum)
-								returnedInt = updateDummiesUsers.update(user, true);
-							else {
-								returnedInt = functionsCrudUsers.updateUser(user, true);
-								optSec[0] = "Update other User";
-								if (returnedInt == -1)
-									replay = false;
-								else
-									replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Update Car");
-							}// end_else
+							if (user != null) {
+								if (modeDum)
+									returnedInt = updateDummiesUsers.update(user, true);
+								else {
+									returnedInt = functionsCrudUsers.updateUser(user, true);
+									optSec[0] = "Update other User";
+									if (returnedInt == -1)
+										replay = false;
+									else
+										replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Update User");
+								}// end_else
+							}else
+								replay = false;
 						}// end_else
 					}while (replay == true);
 					break;
@@ -86,7 +89,7 @@ public class menuCrudUsers {
 							if (returnedInt == -1)
 								replay = false;
 							else
-								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Delete Car");
+								replay = functionsMenu.buttonMenuSec(optSec, "Choose an option.", "Delete User");
 						}// end_else
 					}while (replay == true);
 					break;

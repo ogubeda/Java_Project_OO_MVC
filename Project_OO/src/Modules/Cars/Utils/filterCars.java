@@ -109,6 +109,7 @@ public class filterCars {
         if ((sendedText.toLowerCase().equals(cutBrand)) || (sendedText.toLowerCase().equals(cutModel)) || 
             (sendedText.equals(date)) || (sendedText.equals(dateEnd))) {
             check = true;
+            System.out.println("Finded similar entries.");
         }else
             check = false;
         //////

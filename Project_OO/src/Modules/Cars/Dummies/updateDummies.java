@@ -9,7 +9,8 @@ public class updateDummies {
     private static String[] optionsElectric = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "battery", "Back"};
 	private static String[] optionsHybrid = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Type Hybrid", "Back"};
 	private static String[] optionsCombustion = {"Brand", "Model", "Seats", "Parking Assistence", "Doors", "Car Plate", "Start Day", "End Day", "Type Combustion", "Back"};
-    public static int updateCar(int engine) {
+	
+	public static int updateCar(int engine) {
 		//////
 		int select = 0, selectButton = 0, returnedValue = 0;
 		//////

@@ -16,7 +16,7 @@ public class menuAdmin {
 		/////
 	
 		do {
-			selection = functionsMenu.buttonMenu(options, "Choose a type of car.", "Pick an option");
+			selection = functionsMenu.buttonMenu(options, "Select an option.", "Pick an option");
 			switch (selection) {
 				case 0:
 					menuSecondAdmin.menuSecondary(0, modeDum);

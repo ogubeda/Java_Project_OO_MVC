@@ -55,7 +55,7 @@ public class menuSecondAdmin {
 							replay = false;
 						else{
 							if (modeDum)
-								updateDummies.updateCar(engine);
+								returnedInt = updateDummies.updateCar(engine);
 							else
 								returnedInt = functionsCars_crud.updateCar(engine);
 							//////

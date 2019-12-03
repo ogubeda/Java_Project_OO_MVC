@@ -35,6 +35,7 @@ public class functionsSearchCar {
                         for (int i = 0; i < engineList.size(); i++) {
                             if (test.equals(engineList.get(i).getCarPlate())) {
                                 select = i;
+                                System.out.println("Car exists and being returned.");
                                 finded = true;
                             }// end_if
                         }//end_for

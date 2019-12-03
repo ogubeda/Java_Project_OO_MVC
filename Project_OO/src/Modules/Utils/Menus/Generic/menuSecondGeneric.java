@@ -7,7 +7,7 @@ import Modules.Utils.checker;
 
 public class menuSecondGeneric {
     //////
-    public static void menuSecondary(int engine, boolean modeDum) {
+    public static void menuSecondary(int engine) {
 		String[] options = {"Read", "Order","Back"};
 		Object[] optSec = {"", "Back", "Exit"};
 		int selection = 0;

@@ -248,17 +248,18 @@ public class functionsCars_crud {
 
 		select = functionsSearchCar.search(engine);
 		if (engine == 0) {
-			if (select == -1)
+			if (select != -1)
 				Singleton.electricList.remove(select).toString();
 			//////
 		}else if (engine == 1) {
-			if (select == -1)
+			if (select != -1)
 				Singleton.hybridList.remove(select).toString();
 			//////
 		}else if (engine == 2) {
 			if (select != -1)
 				Singleton.combustionList.remove(select).toString();
-		}// end_else
+		}else
+			select = -1;
 		return select;
 	}// end_deleteCar
 	//////
