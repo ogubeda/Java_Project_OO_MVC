@@ -35,9 +35,11 @@ public class menuAdmin {
 						chooseDummies.quantity();
 						modeDum = true;
 						options[3] = "Disable Dummies";
+						System.out.println("Dummies on.");
 					}else {
 						modeDum = false;
 						options[3] = "Dummies Mode";
+						System.out.println("Dummies off.");
 					}
 					break;
                     //////

@@ -55,7 +55,7 @@ public class generateDummiesUsers {
         /////
         
         do {
-            username = username1[rUsers.nextInt(username1.length)] + username2[rUsers.nextInt(username2.length)] + rUsers.nextInt((100 - 1) + 1);
+            username = username1[rUsers.nextInt(username1.length)] + username2[rUsers.nextInt(username2.length)] + rUsers.nextInt((1000 - 1) + 1);
         }while (functionsUsers.findUser(username));
         //////
         return username;

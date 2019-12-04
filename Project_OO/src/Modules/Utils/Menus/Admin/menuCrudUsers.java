@@ -84,7 +84,6 @@ public class menuCrudUsers {
 							replay = false;
 						else {
                             optSec[0] = "Delete other User";
-							user = functionsUsers.selectUser(typeUser);
 							returnedInt = functionsCrudUsers.deleteUser(typeUser);
 							if (returnedInt == -1)
 								replay = false;

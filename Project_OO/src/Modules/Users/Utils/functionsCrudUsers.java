@@ -48,15 +48,18 @@ public class functionsCrudUsers {
                 case 0:
                     user.setUsername("");
                     user.setUsername(functionsLogIn.createUsername());
+                    System.out.println("Username changed.");
                     break;
                     //////
                 case 1:
                     user.setPassword(functionsLogIn.createPassword());
+                    System.out.println("Password changed.");
                     break;
                     //////
                 case 2:
                     user.setEmail("");
                     user.setEmail(functionsLogIn.createEmail());
+                    System.out.println("Email changed.");
                     break;
                     //////
                 default:
@@ -70,15 +73,18 @@ public class functionsCrudUsers {
                 case 0:
                     user.setUsername("");
                     user.setUsername(functionsLogIn.createUsername());
+                    System.out.println("Username changed.");
                     break;
                     //////
                 case 1:
                     user.setPassword(functionsLogIn.createPassword());
+                    System.out.println("Password changed.");
                     break;
                     //////
                 case 2:
                     user.setEmail("");
                     user.setEmail(functionsLogIn.createEmail());
+                    System.out.println("Email changed.");
                     break;
                     //////
                 case 3:

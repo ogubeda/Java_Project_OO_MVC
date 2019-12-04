@@ -31,9 +31,10 @@ public class generateDummies {
         /////
         brand = generateBrand();
         model = generateModel(brand);
-    seat = generateSeats();
+        seat = generateSeats();
         door = generateDoors();
         dateStart = generateDateStart();
+        //////
         if (type == -1)
             typeEngine = r1.nextInt(3);
         if (typeEngine == 0) {
@@ -132,14 +133,11 @@ public class generateDummies {
     public static Fecha generateDateStart() {
         //////
         Fecha returnDate = null;
-        boolean resume = false;
         //////
         /////
         do {
             returnDate = new Fecha (Integer.toString(r1.nextInt(2022 - 2020) + 2020) + "/" + (Integer.toString(r1.nextInt(12 - 1) + 1)) + "/" + (Integer.toString(r1.nextInt(31 - 1) + 1)));
-            if (returnDate.verDate())
-                resume = true;
-        }while (resume == false);
+        }while (returnDate.verDate() == false);
         //////
         return returnDate;
     }// end_generateDate
@@ -149,14 +147,11 @@ public class generateDummies {
     public static Fecha modifyDateStart(Fecha dateEnd) {
         //////
         Fecha returnDate = null;
-        boolean resume = false;
         //////
         /////
         do {
             returnDate = new Fecha (Integer.toString(r1.nextInt(2022 - 2020) + 2020) + "/" + (Integer.toString(r1.nextInt(12 - 1) + 1)) + "/" + (Integer.toString(r1.nextInt(31 - 1) + 1)));
-            if ((returnDate.verDate()) && (returnDate.subtractDates(dateEnd) < 0))
-                resume = true;
-        }while (resume == false);
+        }while ((returnDate.verDate() == false) && (returnDate.subtractDates(dateEnd) < 0));
         //////
         return returnDate;
     }// end_modifyDateStart
@@ -166,14 +161,11 @@ public class generateDummies {
     public static Fecha generateDateEnd(Fecha dateStart) {
         //////
         Fecha returnDate = null;
-        boolean resume = false;
         //////
         /////
         do {
             returnDate = new Fecha (Integer.toString(r1.nextInt(2022 - 2020) + 2020) + "/" + (Integer.toString(r1.nextInt(12 - 1) + 1)) + "/" + (Integer.toString(r1.nextInt(31 - 1) + 1)));
-            if (returnDate.verDate() && returnDate.subtractDates(dateStart) > 0)
-                resume = true;
-        }while (resume == false);
+        }while ((returnDate.verDate() == false) && (returnDate.subtractDates(dateStart) < 0));
         //////
         return returnDate;
     }// end_generateDate
