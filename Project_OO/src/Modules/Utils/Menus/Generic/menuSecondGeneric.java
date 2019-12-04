@@ -35,7 +35,7 @@ public class menuSecondGeneric {
 					}while (replay == true);
 					break;
 					//////			
-				case 2:
+				case 1:
 					if (checker.checkCars(engine) == false) {
 						if (engine == 0)
 							functionsOrder.orderElectric();
